@@ -1,4 +1,4 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_ATTEMPTED } from '../actions/types';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_ATTEMPTED } from '../Actions/types';
 
 const INITIAL_STATE = { 
     email: '', 

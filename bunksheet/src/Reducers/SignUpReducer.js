@@ -7,7 +7,7 @@ import {
     SIGNUP_REG_ID_CHANGED,
     SIGNUP_OTP_CHANGED,
     SIGNUP_ATTEMPTED
-} from '../actions/types';
+} from '../Actions/types';
 
 const INITIAL_STATE = { 
     email: '',  

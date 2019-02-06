@@ -19,7 +19,7 @@ import { Button } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import Amplify, { Auth } from 'aws-amplify';
-import awsConfig from '../../sensitive_info/aws-exports';
+import awsConfig from '../../Sensitive_Info/aws-exports';
 
 Amplify.configure({Auth: awsConfig});
 
@@ -311,14 +311,14 @@ export default class ForgotPasswordScreen extends Component {
 
                         <View style={styles.headerIconView}>
                             <TouchableOpacity style={styles.headerBackButtonView} onPress={this.backButtonNavigation.bind(this)}>
-                                <Image style={styles.backButtonIcon} source={require('../../images/black_back.png')} />
+                                <Image style={styles.backButtonIcon} source={require('../../Images/black_back.png')} />
                             </TouchableOpacity>
                         </View>
 
                         <View style={styles.logoImageView}>
                             <Image 
                                 style={styles.logoImage}
-                                source={require('../../images/confused-brown-md.png')}
+                                source={require('../../Images/confused-brown-md.png')}
                             />
                         </View>
 

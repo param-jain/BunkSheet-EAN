@@ -21,10 +21,10 @@ import { connect } from 'react-redux'
 import { 
   signupOTPChanged,
   signupEmailChanged
-} from '../../actions/index'
+} from '../../Actions/index'
 
 import  Amplify, { Auth } from 'aws-amplify';
-import awsConfig from '../../sensitive_info/aws-exports';
+import awsConfig from '../../Sensitive_Info/aws-exports';
 
 Amplify.configure({ Auth: awsConfig });
 
@@ -56,7 +56,7 @@ class ConfirmationScreen extends Component {
        Auth.confirmSignUp(this.state.username, OTP)
           .then(data => { 
                 this.setState({ isAuthenticating: false });
-              this.props.navigation.navigate('all_books_list');
+              this.props.navigation.navigate('ean_home');
             })
           .catch(err => { 
             this.setState({ isAuthenticating: false });
@@ -158,13 +158,13 @@ class ConfirmationScreen extends Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-                <Image style={styles.bg} source={require('../../images/orange-owl-hi-flipped.png')} />
+                <Image style={styles.bg} source={require('../../Images/orange-owl-hi-flipped.png')} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
 
                         <View style={styles.headerIconView}>
                             <TouchableOpacity style={styles.headerBackButtonView} onPress={this.backButtonNavigation.bind(this)} disabled>
-                                <Image style={styles.backButtonIcon} source={require('../../images/black_back.png')} />
+                                <Image style={styles.backButtonIcon} source={require('../../Images/black_back.png')} />
                             </TouchableOpacity>
                         </View>
 

@@ -1,4 +1,4 @@
-import { LIBRARY_SEARCHTEXT_CHANGED, LIBRARY_NOTICE_COUNT } from '../actions/types';
+import { LIBRARY_SEARCHTEXT_CHANGED, LIBRARY_NOTICE_COUNT } from '../Actions/types';
 
 const INITIAL_STATE = {
     notice_count: 0,

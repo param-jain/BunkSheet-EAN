@@ -18,7 +18,7 @@ import { Button, Icon } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { connect } from 'react-redux'
 
-import { signupEmailChanged, signupPasswordChanged, signupVerifyPasswordChanged} from '../../actions/index'
+import { signupEmailChanged, signupPasswordChanged, signupVerifyPasswordChanged} from '../../Actions/index'
 
 
 
@@ -291,13 +291,13 @@ class SignUpScreen_1 extends Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-                <Image style={styles.bg} source={require('../../images/orange-owl-hi.png')} />
+                <Image style={styles.bg} source={require('../../Images/orange-owl-hi.png')} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
 
                         <View style={styles.headerIconView}>
                             <TouchableOpacity style={styles.headerBackButtonView} onPress={this.backButtonNavigation.bind(this)}>
-                                <Image style={styles.backButtonIcon} source={require('../../images/black_back.png')} />
+                                <Image style={styles.backButtonIcon} source={require('../../Images/black_back.png')} />
                             </TouchableOpacity>
                         </View>
 
