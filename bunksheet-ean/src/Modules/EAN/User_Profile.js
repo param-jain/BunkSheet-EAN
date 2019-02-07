@@ -11,6 +11,8 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from '../../Sensitive_Info/aws-exports';
 Amplify.configure({ Auth: awsConfig });
 
+import { eanUserBranchSelect } from '../../Actions/index';
+
 class User_Profile extends React.Component {
 
     static navigationOptions = (props) => {
@@ -53,7 +55,7 @@ class User_Profile extends React.Component {
             lName: `${user.attributes["family_name"]}`,
             email: `${user.attributes["email"]}`
           });
-        console.log("Issuance Page User Attributes: "+user.attributes);
+        console.log("EAN User Attributes: "+user.attributes);
       });
     }
 
@@ -61,11 +63,15 @@ class User_Profile extends React.Component {
         avatar: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         navigation: PropTypes.object.isRequired,
-        email: PropTypes.string.isRequired
+        email: PropTypes.string.isRequired,
       }
 
-    onPressBranchSelection = () => {
+    onPressBranchSelectionModal = () => {
         this.setState({modalVisible: true});
+    }
+
+    onBranchSelect = (text) => {
+        this.props.eanUserBranchSelect(text);
     }
 
   render() {
@@ -107,9 +113,9 @@ class User_Profile extends React.Component {
                     <ListItem
                         hideChevron
                         title="Branch"
-                        rightTitle={`${this.state.branch}`}
+                        rightTitle={`${this.props.branch}`}
                         rightTitleStyle={{ fontSize: 15 }}
-                        onPress={() => this.onPressBranchSelection()}
+                        onPress={() => this.onPressBranchSelectionModal()}
                         containerStyle={styles.listItemContainer}
                         leftIcon={
                             <BaseIcon
@@ -134,11 +140,13 @@ class User_Profile extends React.Component {
                     <View style={styles.popupOverlay}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
+                            <Text style={styles.modalTitle}>Select Your Branch</Text>
                             <Picker
-                                selectedValue={this.state.branch}
+                                selectedValue={this.props.branch}
                                 style={{height: 50, width: 100}}
-                                onValueChange={(itemValue, itemIndex) => {
-                                    this.setState({branch: itemValue, modalVisible: false})
+                                onValueChange={(itemValue) => {
+                                    this.onBranchSelect(itemValue);
+                                    this.setState({modalVisible: false});
                                 }
                                 }>
                                 <Picker.Item label="Computer" value="Computer" />
@@ -210,9 +218,24 @@ const styles = StyleSheet.create({
   },
   popupContent: {
     alignItems: 'center',
+    justifyContent: 'center',
     margin: 5,
-    height:"80%",
+    height:"50%",
+  },
+  modalTitle:{
+    fontSize:22,
+    flex:1,
+    alignSelf:'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    color:"#FF3D00",
+    fontWeight:'bold',
+    paddingTop: 50,
   },
 });
 
-export default connect(null, { })(User_Profile);
+const mapStateToProps = (state) => ({
+    branch: state.ean.branch,
+});
+
+export default connect(mapStateToProps, {eanUserBranchSelect})(User_Profile);

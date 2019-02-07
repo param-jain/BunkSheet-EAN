@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import AuthReducer from './AuthReducer';
 import SignUpReducer from './SignUpReducer';
-import LibraryReducer from './LibraryReducer';
+import EANReducer from './EANReducer';
 
 export default combineReducers({
     auth: AuthReducer,
     sign_up: SignUpReducer,
-    library: LibraryReducer
+    ean: EANReducer
 });

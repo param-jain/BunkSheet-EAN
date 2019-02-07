@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "bunksheet",
-    "description": "This project is really great. Please contact Team BunkSheet to implement this project in your College upon completion.",
-    "slug": "bunksheet",
+    "name": "Bunksheet E.A.N",
+    "description": "Exams - Assignments - Notices",
+    "slug": "bunksheet-ean",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": [
@@ -11,7 +11,7 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/bunksheet_logos/bunksheet_logo.png",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

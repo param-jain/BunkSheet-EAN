@@ -12,4 +12,4 @@ export const SIGNUP_REG_ID_CHANGED = 'sign_up_reg_id_changed';
 export const SIGNUP_ATTEMPTED = 'sign_up_attempted';
 export const SIGNUP_OTP_CHANGED = 'sign_up_OTP_changed';
 
-export const LIBRARY_NOTICE_COUNT = 'library_notice_count';
+export const EAN_USER_BRANCH_SELECT = 'ean_user_branch_select';

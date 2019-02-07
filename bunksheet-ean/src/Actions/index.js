@@ -9,9 +9,8 @@ import {
     SIGNUP_L_NAME_CHANGED,
     SIGNUP_REG_ID_CHANGED,
     SIGNUP_ATTEMPTED,
-    SIGNUP_OTP_CHANGED,
-    LIBRARY_SEARCHTEXT_CHANGED,
-    LIBRARY_NOTICE_COUNT
+    SIGNUP_OTP_CHANGED, 
+    EAN_USER_BRANCH_SELECT
 } from './types';
 
 
@@ -87,10 +86,10 @@ export const signupOTPChanged = (text) => {
     };
 };
 
-
-export const libraryNoticeCount = (text) => {
+// E.A.N Module
+export const eanUserBranchSelect = (text) => {
     return {
-        type: LIBRARY_NOTICE_COUNT,
+        type: EAN_USER_BRANCH_SELECT,
         payload: text
     };
 };
