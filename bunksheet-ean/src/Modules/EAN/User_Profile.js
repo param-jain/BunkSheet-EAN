@@ -12,7 +12,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from '../../Sensitive_Info/aws-exports';
 Amplify.configure({ Auth: awsConfig });
 
-import { eanUserBranchSelect } from '../../Actions/index';
+import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
 class User_Profile extends React.Component {
 
@@ -33,15 +33,15 @@ class User_Profile extends React.Component {
 
         this.state = {
             loading: false,
-            data:[],
             error: '',
-            bookSelected: [],
-            modalVisible: false,
+            branchModalVisible: false,
+            yearModalVisible: false,
+            divisionModalVisible: false,
+            batchModalVisible: false,
             userRegID: 'E2K1610000',
             fName: 'Param',
             lName: 'Jain',
-            email: 'param@bunksheet.com',
-            branch: 'E&TC'
+            email: 'param@bunksheet.com'
         }
         this.arrayHolder = [];
     }
@@ -68,11 +68,41 @@ class User_Profile extends React.Component {
       }
 
     onPressBranchSelectionModal = () => {
-        this.setState({modalVisible: true});
+        this.setState({branchModalVisible: true});
     }
 
     onBranchSelect = (text) => {
         this.props.eanUserBranchSelect(text);
+    }
+
+    onPressYearSelectionModal = () => {
+      this.setState({yearModalVisible: true});
+    }
+
+    onYearSelect = (text) => {
+      this.props.eanUserYearSelect(text);
+    }
+
+    onPressDivisionSelectionModal = () => {
+      this.setState({divisionModalVisible: true});
+    }
+
+    onDivisionSelect = (text) => {
+      this.props.eanUserDivisionSelect(text);
+    }
+
+    onPressBatchSelectionModal = () => {
+      this.setState({batchModalVisible: true});
+    }
+
+    onBatchSelect = (text) => {
+      this.props.eanUserBatchSelect(text);
+    }
+
+    signOut = () => {
+      Auth.signOut()
+        .then(data => this.props.navigation.navigate('login'))
+        .catch(err => console.log("Fresh Arrivals LogOut Error: " + err));
     }
 
   render() {
@@ -80,92 +110,281 @@ class User_Profile extends React.Component {
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scroll}>
-                <View style={styles.userRow}>
-                    <View style={styles.userImage}>
-                        <Avatar
-                        rounded
-                        size="large"
-                        source={{
-                            uri: avatar,
-                        }}
-                        />
-                    </View>
-                    <View>
-                        <View style={{flexDirection:'row'}}>
-                            <Text style={{ fontSize: 16 }}>{fName} </Text>
-                            <Text style={{ fontSize: 16 }}>{lName}</Text>
-                        </View>
-                        <Text
-                        style={{
-                            color: 'gray',
-                            fontSize: 16,
-                        }}
-                        >
-                        {email}
-                        </Text>
-                    </View>
-                </View>
+              <View style={styles.userRow}>
+              <View style={styles.userImage}>
+                  <Avatar
+                  rounded
+                  size="large"
+                  source={{
+                      uri: avatar,
+                  }}
+                  />
+              </View>
+              <View>
+                  <View style={{flexDirection:'row'}}>
+                      <Text style={{ fontSize: 16 }}>{fName} </Text>
+                      <Text style={{ fontSize: 16 }}>{lName}</Text>
+                  </View>
+                  <Text
+                  style={{
+                      color: 'gray',
+                      fontSize: 16,
+                  }}
+                  >
+                  {email}
+                  </Text>
+              </View>
+            </View>
                 
-                <View style={styles.infoTextContainer}>
-                    <Text style={styles.infoText}>Academic Information</Text>
-                </View>
+            <View style={styles.infoTextContainer}>
+                <Text style={styles.infoText}>Academic Information</Text>
+            </View>
 
-                <View>
-                    <ListItem
-                        hideChevron
-                        title="Branch"
-                        rightTitle={`${this.props.branch}`}
-                        rightTitleStyle={{ fontSize: 15 }}
-                        onPress={() => this.onPressBranchSelectionModal()}
-                        containerStyle={styles.listItemContainer}
-                        leftIcon={
-                            <BaseIcon
-                                containerStyle={{
-                                backgroundColor: '#FFADF2',
-                                }}
-                                icon={{
-                                type: 'material',
-                                name: 'call-split',
-                                }}
-                            />
-                        }
-                        rightIcon={<Chevron />}
-                    />
-                    
-                    <Modal
-                        animationType={'fade'}
-                        transparent={true}
-                        onRequestClose={() => this.setState({modalVisible: false})}
-                        visible={this.state.modalVisible}
-                    >
-                        <View style={styles.popupOverlay}>
-                            <View style={styles.popup}>
-                                <View style={styles.popupContent}>
-                                <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
-                                    <Text style={styles.modalTitle}>Select Your Branch</Text>
-                                </View>
-                                <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
-                                    <Picker
-                                        selectedValue={this.props.branch}
-                                        style={{height: 50, width: 2*Dimensions.get('window').width/3}}
-                                        onValueChange={(itemValue) => {
-                                            this.onBranchSelect(itemValue);
-                                            this.setState({modalVisible: false});
-                                        }}
-                                        mode="dropdown">
-                                        <Picker.Item label="Computer" value="Computer" />
-                                        <Picker.Item label="IT" value="IT" />
-                                        <Picker.Item label="E&TC" value="E&TC" />
-                                        <Picker.Item label="FE" value="FE" />
-                                    </Picker>
-                                </View>
-                                </View>
+            <View>
+                <ListItem
+                    hideChevron
+                    title="Branch"
+                    rightTitle={`${this.props.branch}`}
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => this.onPressBranchSelectionModal()}
+                    containerStyle={styles.listItemContainer}
+                    leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#FFADF2',
+                            }}
+                            icon={{
+                            type: 'material',
+                            name: 'call-split',
+                            }}
+                        />
+                    }
+                    rightIcon={<Chevron />}
+                />
+                
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => this.setState({branchModalVisible: false})}
+                    visible={this.state.branchModalVisible}
+                >
+                    <View style={styles.popupOverlay}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                <Text style={styles.modalTitle}>Select Your Branch</Text>
+                            </View>
+                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                <Picker
+                                    selectedValue={this.props.branch}
+                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                    onValueChange={(itemValue) => {
+                                        this.onBranchSelect(itemValue);
+                                        this.setState({branchModalVisible: false});
+                                    }}
+                                    mode="dropdown">
+                                    <Picker.Item label="Computer" value="Computer" />
+                                    <Picker.Item label="IT" value="IT" />
+                                    <Picker.Item label="E&TC" value="E&TC" />
+                                </Picker>
+                            </View>
                             </View>
                         </View>
-                    </Modal>
-                </View>
+                    </View>
+                </Modal>
 
-            </ScrollView>
+                <ListItem
+                    hideChevron
+                    title="Year"
+                    rightTitle={`${this.props.year}`}
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => this.onPressYearSelectionModal()}
+                    containerStyle={styles.listItemContainer}
+                    leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#FAD291',
+                            }}
+                            icon={{
+                            type: 'material',
+                            name: 'format-italic',
+                            }}
+                        />
+                    }
+                    rightIcon={<Chevron />}
+                />
+
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => this.setState({yearModalVisible: false})}
+                    visible={this.state.yearModalVisible}
+                >
+                    <View style={styles.popupOverlay}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                <Text style={styles.modalTitle}>Select Academic Year</Text>
+                            </View>
+                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                <Picker
+                                    selectedValue={this.props.year}
+                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                    onValueChange={(itemValue) => {
+                                        this.onYearSelect(itemValue);
+                                        this.setState({yearModalVisible: false});
+                                    }}
+                                    mode="dropdown">
+                                    <Picker.Item label="I Year" value="FE" />
+                                    <Picker.Item label="II Year" value="SE" />
+                                    <Picker.Item label="III Year" value="TE" />
+                                    <Picker.Item label="IV Year" value="BE" />
+                                </Picker>
+                            </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+                <ListItem
+                    hideChevron
+                    title="Division"
+                    rightTitle={`${this.props.division}`}
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => this.onPressDivisionSelectionModal()}
+                    containerStyle={styles.listItemContainer}
+                    leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#A4C8F0',
+                            }}
+                            icon={{
+                            type: 'font-awesome',
+                            name: 'columns',
+                            }}
+                        />
+                    }
+                    rightIcon={<Chevron />}
+                />
+
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => this.setState({divisionModalVisible: false})}
+                    visible={this.state.divisionModalVisible}
+                >
+                    <View style={styles.popupOverlay}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                <Text style={styles.modalTitle}>Select Your Division</Text>
+                            </View>
+                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                <Picker
+                                    selectedValue={this.props.division}
+                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                    onValueChange={(itemValue) => {
+                                        this.onDivisionSelect(itemValue);
+                                        this.setState({divisionModalVisible: false});
+                                    }}
+                                    mode="dropdown">
+                                    <Picker.Item label="1" value="1" />
+                                    <Picker.Item label="2" value="2" />
+                                    <Picker.Item label="3" value="3" />
+                                    <Picker.Item label="4" value="4" />
+                                    <Picker.Item label="5" value="5" />
+                                    <Picker.Item label="6" value="6" />
+                                    <Picker.Item label="7" value="7" />
+                                    <Picker.Item label="8" value="8" />
+                                    <Picker.Item label="9" value="9" />
+                                    <Picker.Item label="10" value="10" />
+                                    <Picker.Item label="11" value="11" />
+                                </Picker>
+                            </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+                <ListItem
+                    hideChevron
+                    title="Batch"
+                    rightTitle={`${this.props.batch}`}
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => this.onPressBatchSelectionModal()}
+                    containerStyle={styles.listItemContainer}
+                    leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#57DCE7',
+                            }}
+                            icon={{
+                            type: 'font-awesome',
+                            name: 'sitemap',
+                            }}
+                        />
+                    }
+                    rightIcon={<Chevron />}
+                />
+
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => this.setState({batchModalVisible: false})}
+                    visible={this.state.batchModalVisible}
+                >
+                    <View style={styles.popupOverlay}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
+                            </View>
+                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                <Picker
+                                    selectedValue={this.props.division}
+                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                    onValueChange={(itemValue) => {
+                                        this.onBatchSelect(itemValue);
+                                        this.setState({batchModalVisible: false});
+                                    }}
+                                    mode="dropdown">
+                                    <Picker.Item label="1" value="1" />
+                                    <Picker.Item label="2" value="2" />
+                                    <Picker.Item label="3" value="3" />
+                                    <Picker.Item label="4" value="4" />
+                                    <Picker.Item label="5" value="5" />
+                                </Picker>
+                            </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+                <View style={styles.infoTextContainer}>
+                    <Text style={styles.infoText}>More</Text>
+                </View>
+              
+                <ListItem
+                    hideChevron
+                    title="Sign Out"
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => this.signOut()}
+                    containerStyle={styles.listItemContainer}
+                    leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#F44336',
+                            }}
+                            icon={{
+                            type: 'entypo',
+                            name: 'log-out',
+                            }}
+                        />
+                    }
+                />                     
+
+            </View>
+          </ScrollView>
         </View>
     );
   }
@@ -242,6 +461,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
     branch: state.ean.branch,
+    year: state.ean.year,
+    division: state.ean.division,
+    batch: state.ean.batch
 });
 
-export default connect(mapStateToProps, {eanUserBranchSelect})(User_Profile);
+export default connect(mapStateToProps, {eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect})(User_Profile);

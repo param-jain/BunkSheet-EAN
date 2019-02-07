@@ -10,7 +10,10 @@ import {
     SIGNUP_REG_ID_CHANGED,
     SIGNUP_ATTEMPTED,
     SIGNUP_OTP_CHANGED, 
-    EAN_USER_BRANCH_SELECT
+    EAN_USER_BRANCH_SELECT,
+    EAN_USER_YEAR_SELECT,
+    EAN_USER_DIVISION_SELECT,
+    EAN_USER_BATCH_SELECT
 } from './types';
 
 
@@ -90,6 +93,27 @@ export const signupOTPChanged = (text) => {
 export const eanUserBranchSelect = (text) => {
     return {
         type: EAN_USER_BRANCH_SELECT,
+        payload: text
+    };
+};
+
+export const eanUserYearSelect = (text) => {
+    return {
+        type: EAN_USER_YEAR_SELECT,
+        payload: text
+    };
+};
+
+export const eanUserDivisionSelect = (text) => {
+    return {
+        type: EAN_USER_DIVISION_SELECT,
+        payload: text
+    };
+};
+
+export const eanUserBatchSelect = (text) => {
+    return {
+        type: EAN_USER_BATCH_SELECT,
         payload: text
     };
 };

@@ -1,7 +1,10 @@
-import { EAN_USER_BRANCH_SELECT } from '../Actions/types';
+import { EAN_USER_BRANCH_SELECT, EAN_USER_YEAR_SELECT, EAN_USER_DIVISION_SELECT, EAN_USER_BATCH_SELECT } from '../Actions/types';
 
 const INITIAL_STATE = { 
     branch: 'E&TC',
+    year: 'TE',
+    division: '8',
+    batch: '2'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -9,6 +12,15 @@ export default (state = INITIAL_STATE, action) => {
 
         case EAN_USER_BRANCH_SELECT:
             return { ...state, branch: action.payload };
+
+        case EAN_USER_YEAR_SELECT:
+            return { ...state, year: action.payload };
+
+        case EAN_USER_DIVISION_SELECT:
+            return { ...state, division: action.payload };
+
+        case EAN_USER_BATCH_SELECT:
+            return { ...state, batch: action.payload };
 
         default: 
             return state;
