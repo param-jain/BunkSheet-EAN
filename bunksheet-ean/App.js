@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Alert, Icon } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Notifications } from 'expo';
 
 import LoginScreen from './src/Modules/Authentication/LoginScreen';
@@ -14,6 +15,7 @@ import ForgotPasswordScreen from './src/Modules/Authentication/ForgotPasswordScr
 
 import Reducers from './src/Reducers';
 import EAN_Home from './src/Modules/EAN/EAN_Home';
+import User_Profile from './src/Modules/EAN/User_Profile';
 
 export default class App extends React.Component {
 
@@ -34,7 +36,27 @@ export default class App extends React.Component {
           }
         })
       },
-      ean_home: { screen: EAN_Home },
+      main: {
+        screen: createBottomTabNavigator({
+          ean: {
+            screen: createStackNavigator({
+              ean_home: { screen: EAN_Home },     
+              profile: { screen: User_Profile } 
+            }), 
+            navigationOptions: {
+              title: "E A N",
+              tabBarIcon: ({ tintColor }) => {
+                return <Icon name="paper-plane" type="font-awesome" size={22} color={tintColor} />;
+              },
+            }
+          }
+        }, {
+          tabBarPosition: 'bottom',
+          tabBarOptions: {
+            labelStyle: { fontSize: 12 }
+          }
+        })
+      }
     }, {
       navigationOptions: {
         tabBarVisible: false
