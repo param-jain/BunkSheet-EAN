@@ -7,7 +7,7 @@ export default class Exams extends React.Component {
   static navigationOptions = (props) => {
     const { navigate } = props.navigation;
     return {
-        title: 'ASS',
+        title: 'Exams',
         headerTitleStyle: { color: '#fff' },
         headerStyle: { backgroundColor: '#FD6D00' },
         headerRight: (

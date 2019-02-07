@@ -14,8 +14,10 @@ import ConfirmationScreen from './src/Modules/Authentication/ConfirmationScreen'
 import ForgotPasswordScreen from './src/Modules/Authentication/ForgotPasswordScreen';
 
 import Reducers from './src/Reducers';
-import EAN_Home from './src/Modules/EAN/EAN_Home';
+import Notices from './src/Modules/EAN/Notices';
 import User_Profile from './src/Modules/EAN/User_Profile';
+import Assignments from './src/Modules/EAN/Assignments';
+import Exams from './src/Modules/EAN/Exams';
 
 export default class App extends React.Component {
 
@@ -39,10 +41,22 @@ export default class App extends React.Component {
       main: {
         screen: createBottomTabNavigator({
           ean: {
-            screen: createStackNavigator({
-              ean_home: { screen: EAN_Home },     
-              profile: { screen: User_Profile } 
-            }), 
+            screen: createBottomTabNavigator({
+              ean_home: {
+                screen: createStackNavigator({
+                  notices: { screen: Notices },     
+                  profile: { screen: User_Profile } 
+                }),
+                navigationOptions: {
+                  title: "Notices"
+                }
+              },
+              assignments: { screen: Assignments },
+              exams: { screen: Exams },
+            }, {
+              tabBarPosition: 'top',
+              swipeEnabled: true
+            }),
             navigationOptions: {
               title: "E A N",
               tabBarIcon: ({ tintColor }) => {

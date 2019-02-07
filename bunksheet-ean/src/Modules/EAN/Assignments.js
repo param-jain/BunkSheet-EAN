@@ -7,7 +7,7 @@ export default class Assignments extends React.Component {
   static navigationOptions = (props) => {
     const { navigate } = props.navigation;
     return {
-        title: 'ASS',
+        title: 'Assignments',
         headerTitleStyle: { color: '#fff' },
         headerStyle: { backgroundColor: '#FD6D00' },
         headerRight: (

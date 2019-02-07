@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Header, Button, Icon } from 'react-native-elements';
 
-export default class EAN_Home extends React.Component {
+export default class Notices extends React.Component {
   
   static navigationOptions = (props) => {
     const { navigate } = props.navigation;
