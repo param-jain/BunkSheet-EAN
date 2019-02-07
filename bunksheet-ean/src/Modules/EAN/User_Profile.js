@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { ScrollView, Picker, StyleSheet, Text, View, Modal, Dimensions } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
@@ -130,34 +131,38 @@ class User_Profile extends React.Component {
                         }
                         rightIcon={<Chevron />}
                     />
-
-                <Modal
-                animationType={'fade'}
-                transparent={true}
-                onRequestClose={() => this.setState({modalVisible: false})}
-                visible={this.state.modalVisible}
-            >
-                    <View style={styles.popupOverlay}>
-                        <View style={styles.popup}>
-                            <View style={styles.popupContent}>
-                            <Text style={styles.modalTitle}>Select Your Branch</Text>
-                            <Picker
-                                selectedValue={this.props.branch}
-                                style={{height: 50, width: 100}}
-                                onValueChange={(itemValue) => {
-                                    this.onBranchSelect(itemValue);
-                                    this.setState({modalVisible: false});
-                                }
-                                }>
-                                <Picker.Item label="Computer" value="Computer" />
-                                <Picker.Item label="IT" value="IT" />
-                                <Picker.Item label="E&TC" value="E&TC" />
-                                <Picker.Item label="FE" value="FE" />
-                            </Picker>
+                    
+                    <Modal
+                        animationType={'fade'}
+                        transparent={true}
+                        onRequestClose={() => this.setState({modalVisible: false})}
+                        visible={this.state.modalVisible}
+                    >
+                        <View style={styles.popupOverlay}>
+                            <View style={styles.popup}>
+                                <View style={styles.popupContent}>
+                                <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                    <Text style={styles.modalTitle}>Select Your Branch</Text>
+                                </View>
+                                <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                    <Picker
+                                        selectedValue={this.props.branch}
+                                        style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                        onValueChange={(itemValue) => {
+                                            this.onBranchSelect(itemValue);
+                                            this.setState({modalVisible: false});
+                                        }}
+                                        mode="dropdown">
+                                        <Picker.Item label="Computer" value="Computer" />
+                                        <Picker.Item label="IT" value="IT" />
+                                        <Picker.Item label="E&TC" value="E&TC" />
+                                        <Picker.Item label="FE" value="FE" />
+                                    </Picker>
+                                </View>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </Modal>    
+                    </Modal>
                 </View>
 
             </ScrollView>
@@ -170,6 +175,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1,
+    marginTop: 4,
     backgroundColor: 'transparent',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
@@ -224,7 +230,7 @@ const styles = StyleSheet.create({
   },
   modalTitle:{
     fontSize:22,
-    flex:1,
+    marginBottom: 4,
     alignSelf:'center',
     textAlign: 'center',
     justifyContent: 'center',
