@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, Switch, StyleSheet, Text, View, Dimensions } from 'react-native'
+import { ScrollView, Picker, StyleSheet, Text, View, Modal, Dimensions } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import BaseIcon from '../../Styles/Icon'
 import Chevron from '../../Styles/Chevron'
@@ -32,10 +33,12 @@ class User_Profile extends React.Component {
             data:[],
             error: '',
             bookSelected: [],
+            modalVisible: false,
             userRegID: 'E2K1610000',
             fName: 'Param',
             lName: 'Jain',
-            email: 'param@bunksheet.com'
+            email: 'param@bunksheet.com',
+            branch: 'E&TC'
         }
         this.arrayHolder = [];
     }
@@ -60,6 +63,10 @@ class User_Profile extends React.Component {
         navigation: PropTypes.object.isRequired,
         email: PropTypes.string.isRequired
       }
+
+    onPressBranchSelection = () => {
+        this.setState({modalVisible: true});
+    }
 
   render() {
     const { avatar, fName, lName, email } = this.state;
@@ -97,24 +104,52 @@ class User_Profile extends React.Component {
                 </View>
 
                 <View>
-                <ListItem
-                    hideChevron
-                    title="Branch"
-                    rightTitle="E&TC"
-                    containerStyle={styles.listItemContainer}
-                    leftIcon={
-                        <BaseIcon
-                            containerStyle={{
-                            backgroundColor: '#FFADF2',
-                            }}
-                            icon={{
-                            type: 'material',
-                            name: 'notifications',
-                            }}
-                        />
-                    }
-                    rightIcon={<Chevron />}
-                />
+                    <ListItem
+                        hideChevron
+                        title="Branch"
+                        rightTitle={`${this.state.branch}`}
+                        rightTitleStyle={{ fontSize: 15 }}
+                        onPress={() => this.onPressBranchSelection()}
+                        containerStyle={styles.listItemContainer}
+                        leftIcon={
+                            <BaseIcon
+                                containerStyle={{
+                                backgroundColor: '#FFADF2',
+                                }}
+                                icon={{
+                                type: 'material',
+                                name: 'call-split',
+                                }}
+                            />
+                        }
+                        rightIcon={<Chevron />}
+                    />
+
+                <Modal
+                animationType={'fade'}
+                transparent={true}
+                onRequestClose={() => this.setState({modalVisible: false})}
+                visible={this.state.modalVisible}
+            >
+                    <View style={styles.popupOverlay}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <Picker
+                                selectedValue={this.state.branch}
+                                style={{height: 50, width: 100}}
+                                onValueChange={(itemValue, itemIndex) => {
+                                    this.setState({branch: itemValue, modalVisible: false})
+                                }
+                                }>
+                                <Picker.Item label="Computer" value="Computer" />
+                                <Picker.Item label="IT" value="IT" />
+                                <Picker.Item label="E&TC" value="E&TC" />
+                                <Picker.Item label="FE" value="FE" />
+                            </Picker>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>    
                 </View>
 
             </ScrollView>
@@ -162,6 +197,22 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     backgroundColor: '#F4F5F4',
   },
+  popup: {
+    backgroundColor: 'white',
+    marginTop: 80,
+    marginHorizontal: 20,
+    borderRadius: 15,
+  },
+  popupOverlay: {
+    backgroundColor: "#00000057",
+    flex: 1,
+    marginTop: 30
+  },
+  popupContent: {
+    alignItems: 'center',
+    margin: 5,
+    height:"80%",
+  },
 });
 
-export default (User_Profile);
+export default connect(null, { })(User_Profile);

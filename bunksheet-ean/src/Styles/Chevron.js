@@ -5,7 +5,7 @@ const Chevron = () => (
   <Icon
     name="chevron-right"
     type="entypo"
-    color="#666666"
+    color="#9E9E9E"
     containerStyle={{ marginLeft: -15, width: 20 }}
   />
 )
