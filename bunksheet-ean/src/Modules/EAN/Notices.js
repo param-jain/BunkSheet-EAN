@@ -7,7 +7,9 @@ export default class Notices extends React.Component {
   static navigationOptions = (props) => {
     const { navigate } = props.navigation;
     return {
-        title: 'E A N',
+        title: 'Notices',
+        tabBarIcon: ({ tintColor }) => {
+          return <Icon name="book" type="font-awesome" size={25} color={tintColor} />; },
         headerTitleStyle: { color: '#fff' },
         headerStyle: { backgroundColor: '#FD6D00' },
         headerRight: (
@@ -21,7 +23,7 @@ export default class Notices extends React.Component {
             marginTop: Platform.OS === 'android' ? 24 : 0
         }
     };
-}
+  }
 
   render() {
     return (

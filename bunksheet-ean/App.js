@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
-import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import { Notifications } from 'expo';
 
 import LoginScreen from './src/Modules/Authentication/LoginScreen';
@@ -41,21 +41,31 @@ export default class App extends React.Component {
       main: {
         screen: createBottomTabNavigator({
           ean: {
-            screen: createBottomTabNavigator({
+            screen: createMaterialTopTabNavigator({
+              assignments: { screen: Assignments },
               ean_home: {
                 screen: createStackNavigator({
                   notices: { screen: Notices },     
                   profile: { screen: User_Profile } 
                 }),
                 navigationOptions: {
-                  title: "Notices"
+                  title: "Notices",
+                  tabBarIcon:({ tintColor }) => {
+                    return <Icon name="bullhorn" type="font-awesome" size={22} color={tintColor} />;
+                  },
                 }
               },
-              assignments: { screen: Assignments },
               exams: { screen: Exams },
             }, {
-              tabBarPosition: 'top',
-              swipeEnabled: true
+              tabBarPosition: 'bottom',
+              swipeEnabled: true,
+              tabBarOptions: { 
+                showIcon: true, 
+                showLabel: false, 
+                style: {
+                backgroundColor: '#F9A825',
+              }
+            },
             }),
             navigationOptions: {
               title: "E A N",

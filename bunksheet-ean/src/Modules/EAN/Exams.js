@@ -8,6 +8,9 @@ export default class Exams extends React.Component {
     const { navigate } = props.navigation;
     return {
         title: 'Exams',
+        tabBarIcon:({ tintColor }) => {
+            return <Icon name="explicit" type="material" size={22} color={tintColor} />;
+        },
         headerTitleStyle: { color: '#fff' },
         headerStyle: { backgroundColor: '#FD6D00' },
         headerRight: (
@@ -23,6 +26,16 @@ export default class Exams extends React.Component {
     };
 }
 
+renderHeader = () => {
+    return(
+      <Header
+        backgroundColor="#FF6D00"
+        outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+        centerComponent={{ text: 'Exams' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+      />
+    );
+  }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -30,7 +43,7 @@ export default class Exams extends React.Component {
         <Image style={styles.bg} source={require('../../Images/fff806b176e96203071782d3684d2079.png')} />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
-           
+            { this.renderHeader() }
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

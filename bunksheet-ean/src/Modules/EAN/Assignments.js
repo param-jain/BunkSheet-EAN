@@ -4,34 +4,46 @@ import { Header, Button, Icon } from 'react-native-elements';
 
 export default class Assignments extends React.Component {
   
-  static navigationOptions = (props) => {
-    const { navigate } = props.navigation;
-    return {
-        title: 'Assignments',
-        headerTitleStyle: { color: '#fff' },
-        headerStyle: { backgroundColor: '#FD6D00' },
-        headerRight: (
-            <View style={{marginLeft: 10, marginRight: 10}}>
-              <TouchableOpacity onPress={() => navigate('profile')} >
-                <Icon name='user' type='font-awesome' color = '#fff'/>
-              </TouchableOpacity>
-            </View>
-        ),
-        style: {
-            marginTop: Platform.OS === 'android' ? 24 : 0
-        }
-    };
-}
+    static navigationOptions = (props) => {
+        const { navigate } = props.navigation;
+        return {
+            title: 'E A N',
+            tabBarIcon: ({ tintColor }) => {
+              return <Icon name="assignment" type="material" size={25} color={tintColor} />; },
+            headerTitleStyle: { color: '#fff', fontSize: 18 },
+            headerStyle: { backgroundColor: '#FD6D00' },
+            headerRight: (
+                <View style={{marginLeft: 10, marginRight: 10}}>
+                  <TouchableOpacity onPress={() => navigate('profile')} >
+                    <Icon name='user' type='font-awesome' color = '#fff'/>
+                  </TouchableOpacity>
+                </View>
+            ),
+            style: {
+                marginTop: Platform.OS === 'android' ? 24 : 0
+            }
+        };
+    }
 
+    renderHeader = () => {
+        return(
+          <Header
+            backgroundColor="#FF6D00"
+            outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+            centerComponent={{ text: 'Assignments' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+          />
+        );
+      }
+    
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
         <Image style={styles.bg} source={require('../../Images/fff806b176e96203071782d3684d2079.png')} />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
-           
-          </View>
+            <View style={styles.container}>
+                { this.renderHeader() }
+            </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     );
