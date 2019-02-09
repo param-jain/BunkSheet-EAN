@@ -9,18 +9,7 @@ export default class Assignments extends React.Component {
         return {
             title: 'E A N',
             tabBarIcon: ({ tintColor }) => {
-              return <Icon name="assignment" type="material" size={25} color={tintColor} />; },
-            headerTitleStyle: { color: '#fff', fontSize: 18 },
-            headerStyle: { backgroundColor: '#FD6D00' },
-            headerRight: (
-                <View style={{marginLeft: 10, marginRight: 10}}>
-                  <TouchableOpacity onPress={() => navigate('profile')} >
-                    <Icon name='user' type='font-awesome' color = '#fff'/>
-                  </TouchableOpacity>
-                </View>
-            ),
-            style: {
-                marginTop: Platform.OS === 'android' ? 24 : 0
+              return <Icon name="assignment" type="material" size={25} color={tintColor} />; 
             }
         };
     }
@@ -29,6 +18,7 @@ export default class Assignments extends React.Component {
         return(
           <Header
             backgroundColor="#FF6D00"
+            statusBarProps={{backgroundColor: "#FF6D00"}}
             outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
             centerComponent={{ text: 'Assignments' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
           />

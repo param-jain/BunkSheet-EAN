@@ -10,18 +10,6 @@ export default class Exams extends React.Component {
         title: 'Exams',
         tabBarIcon:({ tintColor }) => {
             return <Icon name="explicit" type="material" size={22} color={tintColor} />;
-        },
-        headerTitleStyle: { color: '#fff' },
-        headerStyle: { backgroundColor: '#FD6D00' },
-        headerRight: (
-            <View style={{marginLeft: 10, marginRight: 10}}>
-              <TouchableOpacity onPress={() => navigate('profile')} >
-                <Icon name='user' type='font-awesome' color = '#fff'/>
-              </TouchableOpacity>
-            </View>
-        ),
-        style: {
-            marginTop: Platform.OS === 'android' ? 24 : 0
         }
     };
 }
