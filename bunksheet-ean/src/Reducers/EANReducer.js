@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     branch: 'E&TC',
     year: 'TE',
     division: '8',
-    batch: '2'
+    batch: '2',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -21,7 +21,7 @@ export default (state = INITIAL_STATE, action) => {
 
         case EAN_USER_BATCH_SELECT:
             return { ...state, batch: action.payload };
-
+          
         default: 
             return state;
     }

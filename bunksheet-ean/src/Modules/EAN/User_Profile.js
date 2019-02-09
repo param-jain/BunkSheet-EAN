@@ -16,7 +16,9 @@ import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserB
 
 class User_Profile extends React.Component {
 
+
     static navigationOptions = (props) => {
+        
         return {
             title: 'Profile Settings',
             headerTitleStyle: { color: '#000' },
@@ -33,7 +35,6 @@ class User_Profile extends React.Component {
 
         this.state = {
             loading: false,
-            error: '',
             branchModalVisible: false,
             yearModalVisible: false,
             divisionModalVisible: false,
@@ -43,7 +44,6 @@ class User_Profile extends React.Component {
             lName: 'Jain',
             email: 'param@bunksheet.com'
         }
-        this.arrayHolder = [];
     }
 
     componentDidMount(){
@@ -104,6 +104,146 @@ class User_Profile extends React.Component {
         .then(data => this.props.navigation.navigate('login'))
         .catch(err => console.log("Fresh Arrivals LogOut Error: " + err));
     }
+
+    renderBatchModal = () => {
+        if (this.props.year === 'FE') {
+            return(
+                <Modal
+                        animationType={'fade'}
+                        transparent={true}
+                        onRequestClose={() => this.setState({batchModalVisible: false})}
+                        visible={this.state.batchModalVisible}
+                    >
+                        <View style={styles.popupOverlay}>
+                            <View style={styles.popup}>
+                                <View style={styles.popupContent}>
+                                    <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                        <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
+                                    </View>
+                                    <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                        <Picker
+                                            selectedValue={this.props.division}
+                                            style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                            onValueChange={(itemValue) => {
+                                                this.onBatchSelect(itemValue);
+                                                this.setState({batchModalVisible: false});
+                                            }}
+                                            mode="dropdown">
+                                            <Picker.Item label="A" value="A" />
+                                            <Picker.Item label="B" value="B" />
+                                            <Picker.Item label="C" value="C" />
+                                            <Picker.Item label="D" value="D" />
+                                        </Picker>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+            );
+        } else if (this.props.year === 'SE') {
+            return(
+                <Modal
+                        animationType={'fade'}
+                        transparent={true}
+                        onRequestClose={() => this.setState({batchModalVisible: false})}
+                        visible={this.state.batchModalVisible}
+                    >
+                        <View style={styles.popupOverlay}>
+                            <View style={styles.popup}>
+                                <View style={styles.popupContent}>
+                                    <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                        <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
+                                    </View>
+                                    <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                        <Picker
+                                            selectedValue={this.props.division}
+                                            style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                            onValueChange={(itemValue) => {
+                                                this.onBatchSelect(itemValue);
+                                                this.setState({batchModalVisible: false});
+                                            }}
+                                            mode="dropdown">
+                                            <Picker.Item label="E" value="E" />
+                                            <Picker.Item label="F" value="F" />
+                                            <Picker.Item label="G" value="G" />
+                                            <Picker.Item label="H" value="H" />
+                                        </Picker>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+            );
+        } else if (this.props.year === 'TE') {
+            return(
+                <Modal
+                        animationType={'fade'}
+                        transparent={true}
+                        onRequestClose={() => this.setState({batchModalVisible: false})}
+                        visible={this.state.batchModalVisible}
+                    >
+                        <View style={styles.popupOverlay}>
+                            <View style={styles.popup}>
+                                <View style={styles.popupContent}>
+                                    <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                        <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
+                                    </View>
+                                    <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                        <Picker
+                                            selectedValue={this.props.division}
+                                            style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                            onValueChange={(itemValue) => {
+                                                this.onBatchSelect(itemValue);
+                                                this.setState({batchModalVisible: false});
+                                            }}
+                                            mode="dropdown">
+                                            <Picker.Item label="K" value="K" />
+                                            <Picker.Item label="L" value="L" />
+                                            <Picker.Item label="M" value="M" />
+                                            <Picker.Item label="N" value="N" />
+                                        </Picker>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+            );
+        } else if (this.props.year === 'BE') {
+            return(
+                <Modal
+                        animationType={'fade'}
+                        transparent={true}
+                        onRequestClose={() => this.setState({batchModalVisible: false})}
+                        visible={this.state.batchModalVisible}
+                    >
+                        <View style={styles.popupOverlay}>
+                            <View style={styles.popup}>
+                                <View style={styles.popupContent}>
+                                    <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                        <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
+                                    </View>
+                                    <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                        <Picker
+                                            selectedValue={this.props.division}
+                                            style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                            onValueChange={(itemValue) => {
+                                                this.onBatchSelect(itemValue);
+                                                this.setState({batchModalVisible: false});
+                                            }}
+                                            mode="dropdown">
+                                            <Picker.Item label="P" value="P" />
+                                            <Picker.Item label="Q" value="Q" />
+                                            <Picker.Item label="R" value="R" />
+                                            <Picker.Item label="S" value="S" />
+                                        </Picker>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+            );
+        }
+     }
 
   render() {
     const { avatar, fName, lName, email } = this.state;
@@ -316,7 +456,7 @@ class User_Profile extends React.Component {
                     leftIcon={
                         <BaseIcon
                             containerStyle={{
-                            backgroundColor: '#57DCE7',
+                            backgroundColor: '#FEA8A1',
                             }}
                             icon={{
                             type: 'font-awesome',
@@ -327,38 +467,7 @@ class User_Profile extends React.Component {
                     rightIcon={<Chevron />}
                 />
 
-                <Modal
-                    animationType={'fade'}
-                    transparent={true}
-                    onRequestClose={() => this.setState({batchModalVisible: false})}
-                    visible={this.state.batchModalVisible}
-                >
-                    <View style={styles.popupOverlay}>
-                        <View style={styles.popup}>
-                            <View style={styles.popupContent}>
-                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
-                                <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
-                            </View>
-                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
-                                <Picker
-                                    selectedValue={this.props.division}
-                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
-                                    onValueChange={(itemValue) => {
-                                        this.onBatchSelect(itemValue);
-                                        this.setState({batchModalVisible: false});
-                                    }}
-                                    mode="dropdown">
-                                    <Picker.Item label="1" value="1" />
-                                    <Picker.Item label="2" value="2" />
-                                    <Picker.Item label="3" value="3" />
-                                    <Picker.Item label="4" value="4" />
-                                    <Picker.Item label="5" value="5" />
-                                </Picker>
-                            </View>
-                            </View>
-                        </View>
-                    </View>
-                </Modal>
+                {this.renderBatchModal()}
 
                 <View style={styles.infoTextContainer}>
                     <Text style={styles.infoText}>More</Text>
