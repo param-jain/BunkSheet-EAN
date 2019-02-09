@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Dimensions, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
 import { Header, Button, Icon, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
+import ActionButton from 'react-native-action-button';
 import axios from 'axios';
 
 const ROOT_URL = 'https://serene-reef-66358.herokuapp.com/';
@@ -116,6 +117,25 @@ class Notices extends React.Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>         
           <View style={styles.container}>
             {this.renderCollapsibleList()}
+
+            <View style={{flex:1}}>
+              {/* Rest of the app comes ABOVE the action button component !*/}
+              <ActionButton buttonColor="#F9A825" buttonText="Refine" buttonTextStyle={{fontSize: 12}} size={64}>
+                <Icon name="format-italic" type="material" style={styles.actionButtonIcon} />
+                <ActionButton.Item buttonColor='#FAD291' title="Year - Wise" onPress={() => console.log("notes tapped!")}>
+                  <Icon name="format-italic" type="material" style={styles.actionButtonIcon} />
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#FFADF2' title="Branch - Wise" onPress={() => {}}>
+                  <Icon name="call-split" type="material" style={styles.actionButtonIcon} />
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#A4C8F0' title="Division - Wise" onPress={() => {}}>
+                  <Icon name="columns" type="font-awesome" style={styles.actionButtonIcon} />
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#FEA8A1' title="Batch - Wise" onPress={() => {}}>
+                  <Icon name="sitemap" type="font-awesome" style={styles.actionButtonIcon} />
+                </ActionButton.Item>
+              </ActionButton>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -136,12 +156,17 @@ const styles = StyleSheet.create({
     resizeMode: 'center',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
-  }
+  },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
 });
 
 const mapStateToProps = (state) => {
   return {
-    
+
   }
 }
 
