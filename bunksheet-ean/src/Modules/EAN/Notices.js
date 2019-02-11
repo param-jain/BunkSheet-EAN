@@ -9,40 +9,6 @@ import {eanUserBatchSelect, eanUserDivisionSelect} from '../../Actions/index'
 
 const ROOT_URL = 'https://serene-reef-66358.herokuapp.com/';
 
-const actions = [{
-  text: 'Year - Wise',
-  icon: <Icon name="format-italic" type="material" color="#fff"/>,
-  name: 'bt_year_wise',
-  position: 1,
-  color:'#FAD291',
-  textBackground: '#FAD291',
-  textColor: '#fff',
-}, {
-  text: 'Branch - Wise',
-  icon: <Icon name="call-split" type="material" color="#fff"/>,
-  name: 'bt_branch_wise',
-  position: 2,
-  color:'#FFADF2',
-  textBackground: '#FFADF2',
-  textColor: '#fff',
-}, {
-  text: 'Division - Wise',
-  icon: <Icon name="columns" type="font-awesome" color="#fff"/>,
-  name: 'bt_division_wise',
-  position: 3,
-  color:'#A4C8F0',
-  textBackground: '#A4C8F0',
-  textColor: '#fff',
-}, {
-  text: 'Batch - Wise',
-  icon: <Icon name="sitemap" type="font-awesome" color="#fff"/>,
-  name: 'bt_batch_wise',
-  position: 4,
-  color:'#FEA8A1',
-  textBackground: '#FEA8A1',
-  textColor: '#fff',
-}];
-
 class Notices extends React.Component {
   
   static navigationOptions = (props) => {
@@ -172,7 +138,7 @@ class Notices extends React.Component {
               name='refresh'
               type='material'
               color = '#E65100'
-              style ={styles.checkButtonLayout}/>
+              size={22}/>
         </TouchableOpacity>
     );
 }
@@ -181,6 +147,9 @@ filterOptions = () => {
   return(
     <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center'}}>
       <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+          <Icon name="filter" type="font-awesome" color="#FF9800"/>
+        </View>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
           <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#BCAAA4', borderColor:'#FA9800', color:'#eee'}}>Year Wise</Text>
         </TouchableOpacity>
@@ -245,8 +214,8 @@ const styles = StyleSheet.create({
   },
   fab: { 
     position: 'absolute', 
-    width: 70, 
-    height: 70, 
+    width: 60, 
+    height: 60, 
     alignItems: 'center', 
     justifyContent: 'center', 
     right: 20, 
