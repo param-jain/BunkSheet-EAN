@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, Platform, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Platform, RefreshControl, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
 import { Header, Button, Icon, Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -69,7 +69,8 @@ class Notices extends React.Component {
     this.state = {
         loading: false,
         error: '',
-        data: []
+        data: [],
+        refreshing: false
       }
 
     this.arrayHolder = [];
@@ -113,14 +114,21 @@ class Notices extends React.Component {
   };
 
   static async _handleRefresh() {
+    this.setState({refreshing: true});
     await this.makeRemoteRequest();
+    this.setState({refreshing: false});
   };
 
 
   renderCollapsibleList = () => {
     return(
       <View>
-      <ScrollView>
+      <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._handleRefresh}
+          />
+        }>
         <FlatList
           keyboardShouldPersistTaps='always'
             data={this.state.data}
@@ -169,6 +177,30 @@ class Notices extends React.Component {
     );
 }
 
+filterOptions = () => {
+  return(
+    <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center'}}>
+      <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#BCAAA4', borderColor:'#FA9800', color:'#eee'}}>Year Wise</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FFADF2', borderColor:'#FA9800', color:'#eee'}}>Branch Wise</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#A4C8F0', borderColor:'#FA9800', color:'#eee'}}>General</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FEA8A1', borderColor:'#FA9800', color:'#eee'}}>Division Wise</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+          <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 5, backgroundColor:'#B39DDB', borderColor:'#FA9800', color:'#eee'}}>Batch Wise</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+}
+
   render() {
     
     if (this.state.loading) {
@@ -185,6 +217,7 @@ class Notices extends React.Component {
         <Image style={styles.bg} source={require('../../Images/fff806b176e96203071782d3684d2079.png')} />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>         
           <View style={styles.container}>
+              {this.filterOptions()}
               {this.renderCollapsibleList()}
               {console.log(this.state.data)}
               {/*{this.renderActionButton()}*/}
@@ -216,8 +249,8 @@ const styles = StyleSheet.create({
     height: 70, 
     alignItems: 'center', 
     justifyContent: 'center', 
-    right: 30, 
-    bottom: 30, 
+    right: 20, 
+    bottom: 20, 
     backgroundColor: '#F9A825', 
     borderRadius: 40, 
     elevation: 8 
