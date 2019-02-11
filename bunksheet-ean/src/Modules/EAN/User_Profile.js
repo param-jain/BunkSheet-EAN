@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { ScrollView, Picker, StyleSheet, Text, View, Modal, Dimensions } from 'react-native'
+import { ScrollView, Picker, StyleSheet, Platform, Text, View, Modal, Dimensions } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -61,10 +61,10 @@ class User_Profile extends React.Component {
     }
 
     static propTypes = {
-        avatar: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        navigation: PropTypes.object.isRequired,
-        email: PropTypes.string.isRequired,
+        //avatar: PropTypes.string.isRequired,
+        //name: PropTypes.string.isRequired,
+        //navigation: PropTypes.object.isRequired,
+        //email: PropTypes.string.isRequired,
       }
 
     onPressBranchSelectionModal = () => {

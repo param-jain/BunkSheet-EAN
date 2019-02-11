@@ -28,4 +28,23 @@ screen: createBottomTabNavigator({
 </View>
 </Card>
 
+ Rest of the app comes ABOVE the action button component 
+<ActionButton buttonColor="#F9A825" buttonText="Refine" buttonTextStyle={{fontSize: 12}} size={64} positioningMode="absolute">
+<View style={{flex:1, backgroundColor: '#f3f3f3'}}>
+  <Icon name="format-italic" type="material" style={styles.actionButtonIcon} />
+  <ActionButton.Item buttonColor='#FAD291' title="Year - Wise" onPress={() => console.log("notes tapped!")}>
+    <Icon name="format-italic" type="material" style={styles.actionButtonIcon} />
+  </ActionButton.Item>
+  <ActionButton.Item buttonColor='#FFADF2' title="Branch - Wise" onPress={() => {}}>
+    <Icon name="call-split" type="material" style={styles.actionButtonIcon} />
+  </ActionButton.Item>
+  <ActionButton.Item buttonColor='#A4C8F0' title="Division - Wise" onPress={() => {}}>
+    <Icon name="columns" type="font-awesome" style={styles.actionButtonIcon} />
+  </ActionButton.Item>
+  <ActionButton.Item buttonColor='#FEA8A1' title="Batch - Wise" onPress={() => {}}>
+    <Icon name="sitemap" type="font-awesome" style={styles.actionButtonIcon} />
+  </ActionButton.Item>
+</View>
+</ActionButton>
+
 */
