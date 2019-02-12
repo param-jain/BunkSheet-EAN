@@ -34,10 +34,6 @@ class Notices extends React.Component {
         error: '',
         data: [],
         refreshing: false,
-        yearWise:[],
-        branchWise:[],
-        divisionWise:[],
-        batchWise:[],
         originalData:[]
       }
 

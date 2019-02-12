@@ -2,9 +2,9 @@ import { EAN_USER_BRANCH_SELECT, EAN_USER_YEAR_SELECT, EAN_USER_DIVISION_SELECT,
 
 const INITIAL_STATE = { 
     branch: "E&TC",
-    year: "TE",
+    year: "SE",
     division: "8",
-    batch: "L",
+    batch: "F",
 };
 
 export default (state = INITIAL_STATE, action) => {

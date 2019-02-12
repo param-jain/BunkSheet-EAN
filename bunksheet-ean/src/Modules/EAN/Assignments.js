@@ -24,6 +24,7 @@ class Assignments extends React.Component {
           loading: false,
           error: '',
           data: [],
+          originalData:[],
           refreshing: false
         }
   
@@ -56,8 +57,8 @@ class Assignments extends React.Component {
             error: res.error || null,
             loading: false,
             data: res.data,
+            originalData:res.data,
             refreshing: false,
-            yearWise:[]
           });
           this.arrayHolder = res;
         })
@@ -150,60 +151,56 @@ class Assignments extends React.Component {
   
   yearWiseSort = () => {
     this.setState({loading: true});
-    this.makeRemoteRequest();
     const newData = [];
-    for(let i=0; i<this.state.data.length; i++) {
-      if (this.state.data[i].scope === 'year')
-        newData.push(this.state.data[i]);
+    for(let i=0; i<this.state.originalData.length; i++) {
+      if (this.state.originalData[i].scope === 'year')
+        newData.push(this.state.originalData[i]);
     }
     this.setState({
       data: newData,
       loading: false
     });
   }
-  
-  branchWiseSort = () => {
 
+  branchWiseSort = () => {
     this.setState({loading: true});
-    this.makeRemoteRequest();
     const newData = [];
-    for(let i=0; i<this.state.data.length; i++) {
-      if (this.state.data[i].scope === 'branch')
-        newData.push(this.state.data[i]);
+    for(let i=0; i<this.state.originalData.length; i++) {
+      if (this.state.originalData[i].scope === 'branch')
+        newData.push(this.state.originalData[i]);
     }
     this.setState({
       data: newData,
       loading: false
     });
   }
-  
+
   divisionWiseSort = () => {
     this.setState({loading: true});
-    this.makeRemoteRequest();
     const newData = [];
-    for(let i=0; i<this.state.data.length; i++) {
-      if (this.state.data[i].scope === 'division')
-        newData.push(this.state.data[i]);
+    for(let i=0; i<this.state.originalData.length; i++) {
+      if (this.state.originalData[i].scope === 'division')
+        newData.push(this.state.originalData[i]);
     }
     this.setState({
       data: newData,
       loading: false
     });
   }
-  
+
   batchWiseSort = () => {
     this.setState({loading: true});
-    this.makeRemoteRequest();
     const newData = [];
-    for(let i=0; i<this.state.data.length; i++) {
-      if (this.state.data[i].scope === 'batch')
-        newData.push(this.state.data[i]);
+    for(let i=0; i<this.state.originalData.length; i++) {
+      if (this.state.originalData[i].scope === 'batch')
+        newData.push(this.state.originalData[i]);
     }
     this.setState({
       data: newData,
       loading: false
     });
   }
+
 
     renderHeader = () => {
         return(
@@ -220,8 +217,11 @@ class Assignments extends React.Component {
 
     if (this.state.loading) {
       return (
-        <View style={{flex:1, justifyContent: 'center' }}>
-          <ActivityIndicator animating={this.state.loading} size="large" />
+        <View style={styles.container}>
+          { this.renderHeader() }
+          <View style={{flex:1, justifyContent: 'center' }}>
+            <ActivityIndicator animating={this.state.loading} size="large" />
+          </View>
         </View>
       );
     }
