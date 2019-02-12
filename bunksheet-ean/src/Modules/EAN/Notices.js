@@ -1,13 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, Dimensions, Platform, RefreshControl, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
-import { Header, Button, Icon, Card, ListItem } from 'react-native-elements';
+import { Icon, Card} from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { FloatingAction } from 'react-native-floating-action';
-import { Constants } from 'expo';
-import {eanUserBatchSelect, eanUserDivisionSelect} from '../../Actions/index'
 
-const ROOT_URL = 'https://serene-reef-66358.herokuapp.com/';
+const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
 
 class Notices extends React.Component {
   
@@ -36,13 +33,18 @@ class Notices extends React.Component {
         loading: false,
         error: '',
         data: [],
-        refreshing: false
+        refreshing: false,
+        yearWise:[],
+        branchWise:[],
+        divisionWise:[],
+        batchWise:[],
+        originalData:[]
       }
 
     this.arrayHolder = [];
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
    await this.makeRemoteRequest();
   }
 
@@ -64,18 +66,17 @@ class Notices extends React.Component {
 
     axios.post( url, postData, config)
       .then(res => {
-        //console.log(res.data);
         this.setState({
           error: res.error || null,
           loading: false,
           data: res.data,
-          refreshing: false
+          originalData: res.data,
+          refreshing: false,
         });
         this.arrayHolder = res;
       })
       .catch(error => {
-        this.setState({ error, loading: false });
-        console.log(error);
+        this.setState({ error, loading: false, refreshing: false, });
       });
   };
 
@@ -99,16 +100,6 @@ class Notices extends React.Component {
           keyboardShouldPersistTaps='always'
             data={this.state.data}
             renderItem={({ item }) => (
-              /*<ListItem
-              roundAvatar
-              title={item.title}
-              titleStyle = {{fontWeight: "bold"}}
-              subtitle={item.nbody}
-              containerStyle={{ borderBottomWidth: 0 }}
-              chevronColor='#CED0CE'
-              chevron
-              //onPress={() => this.bookDetailModal(item)}
-              />*/
               <Card title={item.title} containerStyle={{borderRadius: 15}} dividerStyle={{borderColor: '#FF5722'}}>
                 <View style={{flexDirection:'row', justifyContent:'center', alignContent: 'center'}}>
                   <Text style={{flex:1, borderWidth: 2, borderColor: '#FF9E80', borderRadius: 10, marginHorizontal: 2, padding: 15}}>{item.nbody}</Text>
@@ -150,24 +141,76 @@ filterOptions = () => {
         <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
           <Icon name="filter" type="font-awesome" color="#FF9800"/>
         </View>
-        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.yearWiseSort()}>
           <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#BCAAA4', borderColor:'#FA9800', color:'#eee'}}>Year Wise</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
           <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FFADF2', borderColor:'#FA9800', color:'#eee'}}>Branch Wise</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
           <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#A4C8F0', borderColor:'#FA9800', color:'#eee'}}>General</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
           <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FEA8A1', borderColor:'#FA9800', color:'#eee'}}>Division Wise</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
+        <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
           <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 5, backgroundColor:'#B39DDB', borderColor:'#FA9800', color:'#eee'}}>Batch Wise</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
   );
+}
+
+yearWiseSort = () => {
+  this.setState({loading: true});
+  const newData = [];
+  for(let i=0; i<this.state.originalData.length; i++) {
+    if (this.state.originalData[i].scope === 'year')
+      newData.push(this.state.originalData[i]);
+  }
+  this.setState({
+    data: newData,
+    loading: false
+  });
+}
+
+branchWiseSort = () => {
+  this.setState({loading: true});
+  const newData = [];
+  for(let i=0; i<this.state.originalData.length; i++) {
+    if (this.state.originalData[i].scope === 'branch')
+      newData.push(this.state.originalData[i]);
+  }
+  this.setState({
+    data: newData,
+    loading: false
+  });
+}
+
+divisionWiseSort = () => {
+  this.setState({loading: true});
+  const newData = [];
+  for(let i=0; i<this.state.originalData.length; i++) {
+    if (this.state.originalData[i].scope === 'division')
+      newData.push(this.state.originalData[i]);
+  }
+  this.setState({
+    data: newData,
+    loading: false
+  });
+}
+
+batchWiseSort = () => {
+  this.setState({loading: true});
+  const newData = [];
+  for(let i=0; i<this.state.originalData.length; i++) {
+    if (this.state.originalData[i].scope === 'batch')
+      newData.push(this.state.originalData[i]);
+  }
+  this.setState({
+    data: newData,
+    loading: false
+  });
 }
 
   render() {
@@ -188,8 +231,6 @@ filterOptions = () => {
           <View style={styles.container}>
               {this.filterOptions()}
               {this.renderCollapsibleList()}
-              {console.log(this.state.data)}
-              {/*{this.renderActionButton()}*/}
               {this.floatingButton()}
           </View>
         </TouchableWithoutFeedback>
