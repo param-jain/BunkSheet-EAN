@@ -18,19 +18,22 @@ import Notices from './src/Modules/EAN/Notices';
 import User_Profile from './src/Modules/EAN/User_Profile';
 import Assignments from './src/Modules/EAN/Assignments';
 import Exams from './src/Modules/EAN/Exams';
+import AcademicDetailsPage from './src/Modules/Authentication/AcademicDetailsPage';
 
 export default class App extends React.Component {
 
   render() {
     const MainNavigator = createBottomTabNavigator({
 
+      academic_details: { screen: AcademicDetailsPage },
       login: { screen: LoginScreen },
       forgot_password: { screen: ForgotPasswordScreen },
+      //academic_details: { screen: AcademicDetailsPage },
       sign_up: { 
         screen: createBottomTabNavigator({
           sign_up_1: { screen: SignUpScreen_1 },
           sign_up_2: { screen: SignUpScreen_2 },
-          otp_confirmation: { screen: ConfirmationScreen }
+          otp_confirmation: { screen: ConfirmationScreen },
         }, 
         {
           navigationOptions: {
@@ -50,7 +53,7 @@ export default class App extends React.Component {
                 }),
                 navigationOptions: {
                   title: "Notices",
-                  //tabBarVisible: false, => Remove comment in V2 of EAN Module
+                  tabBarVisible: false, //=> Remove comment in V2 of EAN Module
                   tabBarIcon:({ tintColor }) => {
                     return <Icon name="bullhorn" type="font-awesome" size={22} color={tintColor} />;
                   },

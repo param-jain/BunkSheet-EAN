@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {Keyboard, Text, View, TextInput, Alert, TouchableWithoutFeedback, Image, KeyboardAvoidingView, StatusBar, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Notifications } from 'expo';
+import  registerForPushNotificationsAsync from '../../Services/push_notifications';
 
 import { emailChanged, passwordChanged, loginUser } from '../../Actions/index';
 
@@ -14,8 +16,12 @@ Amplify.configure({ Auth: awsConfig });
 class LoginScreen extends Component {
 
     componentDidMount() {
+        registerForPushNotificationsAsync();
+        this._notificationSubscription = Notifications.addListener(this._handleNotification);
+
         Auth.currentSession()
-            .then(data => this.props.navigation.navigate('ean_home'));
+            .then(data => this.props.navigation.navigate('ean_home'))
+            .catch(error => console.log('No User Logged In')); 
     }
 
     constructor(props) {
@@ -23,9 +29,14 @@ class LoginScreen extends Component {
     
         this.state = {
             errorMessage: '',
-            isAuthenticating: false
+            isAuthenticating: false,
+            notification: {},
         }
     }
+
+    _handleNotification = (notification) => {
+        this.setState({notification: notification});
+      };
 
     onEmailChange(text) {
         text=text.trim();

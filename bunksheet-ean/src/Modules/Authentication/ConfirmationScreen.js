@@ -56,7 +56,7 @@ class ConfirmationScreen extends Component {
        Auth.confirmSignUp(this.state.username, OTP)
           .then(data => { 
                 this.setState({ isAuthenticating: false });
-              this.props.navigation.navigate('ean_home');
+              this.props.navigation.navigate('academic_details');
             })
           .catch(err => { 
             this.setState({ isAuthenticating: false });

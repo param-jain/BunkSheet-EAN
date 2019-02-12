@@ -57,7 +57,8 @@ class User_Profile extends React.Component {
             email: `${user.attributes["email"]}`
           });
         console.log("EAN User Attributes: "+user.attributes);
-      });
+      })
+      .catch(error => (console.log("User Profile Auth Error: "+ error)));
     }
 
     static propTypes = {
@@ -122,7 +123,7 @@ class User_Profile extends React.Component {
                                     </View>
                                     <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
                                         <Picker
-                                            selectedValue={this.props.division}
+                                            selectedValue={this.props.batch}
                                             style={{height: 50, width: 2*Dimensions.get('window').width/3}}
                                             onValueChange={(itemValue) => {
                                                 this.onBatchSelect(itemValue);
@@ -156,7 +157,7 @@ class User_Profile extends React.Component {
                                     </View>
                                     <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
                                         <Picker
-                                            selectedValue={this.props.division}
+                                            selectedValue={this.props.batch}
                                             style={{height: 50, width: 2*Dimensions.get('window').width/3}}
                                             onValueChange={(itemValue) => {
                                                 this.onBatchSelect(itemValue);
@@ -190,7 +191,7 @@ class User_Profile extends React.Component {
                                     </View>
                                     <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
                                         <Picker
-                                            selectedValue={this.props.division}
+                                            selectedValue={this.props.batch}
                                             style={{height: 50, width: 2*Dimensions.get('window').width/3}}
                                             onValueChange={(itemValue) => {
                                                 this.onBatchSelect(itemValue);
@@ -224,7 +225,7 @@ class User_Profile extends React.Component {
                                     </View>
                                     <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
                                         <Picker
-                                            selectedValue={this.props.division}
+                                            selectedValue={this.props.batch}
                                             style={{height: 50, width: 2*Dimensions.get('window').width/3}}
                                             onValueChange={(itemValue) => {
                                                 this.onBatchSelect(itemValue);

@@ -76,7 +76,7 @@ static async _handleRefresh() {
 
 renderCollapsibleList = () => {
   return(
-    <View>
+    <View style={{marginBottom: 40}}>
     <ScrollView refreshControl={
         <RefreshControl
           refreshing={this.state.refreshing}
@@ -129,19 +129,19 @@ filterOptions = () => {
           <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
         </View>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.yearWiseSort()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Year Wise</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Year Wise</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Branch Wise</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Branch Wise</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>General</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>General</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Division Wise</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Division Wise</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-          <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Batch Wise</Text>
+          <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Batch Wise</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -225,7 +225,7 @@ renderHeader = () => {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
-        <Image style={styles.bg} source={require('../../Images/fff806b176e96203071782d3684d2079.png')} />
+        {/*<Image style={styles.bg} source={require('../../Images/fff806b176e96203071782d3684d2079.png')} />*/}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
             { this.renderHeader() }
