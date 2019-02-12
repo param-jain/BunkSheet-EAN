@@ -98,14 +98,14 @@ class Notices extends React.Component {
             renderItem={({ item }) => (
               <Card title={item.title} containerStyle={{borderRadius: 15}} dividerStyle={{borderColor: '#FF5722'}}>
                 <View style={{flexDirection:'row', justifyContent:'center', alignContent: 'center'}}>
-                  <Text style={{flex:1, borderWidth: 2, borderColor: '#FF9E80', borderRadius: 10, marginHorizontal: 2, padding: 15}}>{item.nbody}</Text>
+                  <Text style={{flex:1, borderWidth: 2, borderColor: '#FFB74D', borderRadius: 10, marginHorizontal: 2, padding: 15}}>{item.nbody}</Text>
                 </View>
                 <View style={{flexDirection: 'row', justifyContent:'center', alignContent: 'center', marginTop: 7}}>
-                  <Text style={{flex: 4, borderWidth: 2, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#FF5722'}}>{item.timestamp}</Text>
-                  <TouchableOpacity style={{flex:1, borderWidth: 2, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, justifyContent: 'center', alignContent: 'center'}} onPress={()=>{ Linking.openURL(ROOT_URL+item.filelink)}} >
-                    <Icon name='file-download' size={24} type='material' color = '#FF9E80'/>
+                  <Text style={{flex: 4, borderWidth: 2, borderColor: '#FFA726', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.timestamp}</Text>
+                  <TouchableOpacity style={{flex:1, borderWidth: 2, borderColor: '#FF9800', borderRadius: 10, marginHorizontal: 2, padding: 15, justifyContent: 'center', alignContent: 'center'}} onPress={()=>{ Linking.openURL(ROOT_URL+item.filelink)}} >
+                    <Icon name='file-download' size={24} type='material' color = '#2E7D32'/>
                   </TouchableOpacity>
-                  <Text style={{flex: 4, borderWidth: 2, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#FF5722'}}>{item.tname}</Text>
+                  <Text style={{flex: 4, borderWidth: 2, borderColor: '#FFA726', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.tname}</Text>
                 </View>
               </Card>
             )}
@@ -132,25 +132,25 @@ class Notices extends React.Component {
 
 filterOptions = () => {
   return(
-    <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center'}}>
+    <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', padding: 5, marginHorizontal: 10}}>
       <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
         <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
-          <Icon name="filter" type="font-awesome" color="#FF9800"/>
+          <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
         </View>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.yearWiseSort()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#BCAAA4', borderColor:'#FA9800', color:'#eee'}}>Year Wise</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Year Wise</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FFADF2', borderColor:'#FA9800', color:'#eee'}}>Branch Wise</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Branch Wise</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#A4C8F0', borderColor:'#FA9800', color:'#eee'}}>General</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>General</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FEA8A1', borderColor:'#FA9800', color:'#eee'}}>Division Wise</Text>
+          <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Division Wise</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-          <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 5, backgroundColor:'#B39DDB', borderColor:'#FA9800', color:'#eee'}}>Batch Wise</Text>
+          <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 5, backgroundColor:'#FAFAFA', borderColor:'#FA9800', color:'#666'}}>Batch Wise</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
