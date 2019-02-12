@@ -155,7 +155,7 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -178,7 +178,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         } else if (this.props.year === 'SE') {
@@ -189,7 +189,7 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -212,7 +212,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         } else if (this.props.year === 'TE') {
@@ -223,7 +223,7 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -246,7 +246,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         } else if (this.props.year === 'BE') {
@@ -257,7 +257,7 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -280,7 +280,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         }
@@ -336,7 +336,7 @@ class AcademicDetailsPage extends React.Component {
                     onRequestClose={() => this.setState({branchModalVisible: false})}
                     visible={this.state.branchModalVisible}
                 >
-                    <View style={styles.popupOverlay}>
+                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({branchModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -358,7 +358,7 @@ class AcademicDetailsPage extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
 
                 <ListItem
@@ -388,7 +388,7 @@ class AcademicDetailsPage extends React.Component {
                     onRequestClose={() => this.setState({yearModalVisible: false})}
                     visible={this.state.yearModalVisible}
                 >
-                    <View style={styles.popupOverlay}>
+                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({yearModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -411,7 +411,7 @@ class AcademicDetailsPage extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
 
                 <ListItem
@@ -565,7 +565,9 @@ const styles = StyleSheet.create({
   popupOverlay: {
     backgroundColor: "#00000057",
     flex: 1,
-    marginTop: 30
+    marginTop: 30,
+    borderWidth: 1,
+    borderColor: '#666'
   },
   popupContent: {
     alignItems: 'center',

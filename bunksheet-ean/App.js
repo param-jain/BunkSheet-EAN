@@ -25,10 +25,10 @@ export default class App extends React.Component {
   render() {
     const MainNavigator = createBottomTabNavigator({
 
-      //academic_details: { screen: AcademicDetailsPage },
+      academic_details: { screen: AcademicDetailsPage },
       login: { screen: LoginScreen },
       forgot_password: { screen: ForgotPasswordScreen },
-      academic_details: { screen: AcademicDetailsPage },
+      //academic_details: { screen: AcademicDetailsPage },
       sign_up: { 
         screen: createBottomTabNavigator({
           sign_up_1: { screen: SignUpScreen_1 },
