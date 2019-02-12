@@ -1,9 +1,11 @@
 
 import React, { Component } from 'react'
-import { ScrollView, Picker, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, Platform, Text, View, Modal, Dimensions } from 'react-native'
+import { ScrollView, Picker, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, Platform, Text, View, Modal, Dimensions, ActivityIndicator } from 'react-native'
 import { Avatar, Icon, ListItem } from 'react-native-elements'
-import PropTypes from 'prop-types'
+import { Notifications } from 'expo'
 import { connect } from 'react-redux'
+
+import axios from 'axios';
 
 import BaseIcon from '../../Styles/Icon'
 import Chevron from '../../Styles/Chevron'
@@ -11,6 +13,8 @@ import Chevron from '../../Styles/Chevron'
 import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from '../../Sensitive_Info/aws-exports';
 Amplify.configure({ Auth: awsConfig });
+
+const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
 
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
@@ -42,7 +46,8 @@ class AcademicDetailsPage extends React.Component {
             userRegID: 'E2K1610000',
             fName: 'Param',
             lName: 'Jain',
-            email: 'param@bunksheet.com'
+            email: 'param@bunksheet.com',
+            sub: ''
         }
     }
 
@@ -62,8 +67,45 @@ class AcademicDetailsPage extends React.Component {
       .catch(error => console.log("Academic Details Error " + error ));
     }
 
-    proceedToEANHome() {
-      this.props.navigation.navigate('ean_home')
+    sendDetailsToBackend = (token) => {
+
+      const url = ROOT_URL+`nd/addUser`;
+      this.setState({ loading: true });
+
+      const userDetails = {
+        expoToken: token,
+        sub: this.state.sub,
+        branch: this.props.branch,
+        batch: this.props.batch,
+        year: this.props.year,
+        division: this.props.division,
+        regId: this.state.userRegID,
+        fName: this.state.fName,
+        lName: this.state.lName,
+        email: this.state.email
+      }
+
+      const config = {
+        Headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+
+      axios.post( url, userDetails, config)
+      .then(res => {
+        console.log("User Details sent to Backend Successfully");
+      })
+      .catch(error => {
+        console.log("User Details NOT sent to Backend i.e. REQUEST FAILED");
+      });
+
+    }
+
+    async proceedToEANHome() {
+      let token = await Notifications.getExpoPushTokenAsync();
+      //console.log("ADP token => " + token );
+      this.sendDetailsToBackend(token);
+      this.props.navigation.navigate('ean_home');
     }
 
     onPressBranchSelectionModal = () => {
@@ -245,6 +287,13 @@ class AcademicDetailsPage extends React.Component {
      }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={{flex:1, justifyContent: 'center' }}>
+          <ActivityIndicator animating={this.state.loading} size="large" />
+        </View>
+      );
+    }
     const { avatar, fName, lName, email } = this.state;
     return (
         <View style={styles.container}>
@@ -447,7 +496,6 @@ class AcademicDetailsPage extends React.Component {
                 />
 
                 {this.renderBatchModal()}
-                />     
 
                 <TouchableOpacity 
                   style={styles.checkButton} 
