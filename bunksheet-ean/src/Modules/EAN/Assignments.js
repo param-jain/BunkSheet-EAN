@@ -64,7 +64,6 @@ class Assignments extends React.Component {
         })
         .catch(error => {
           this.setState({ error, loading: false });
-          console.log(error);
         });
     };
   
@@ -235,7 +234,6 @@ class Assignments extends React.Component {
                 { this.renderHeader() }
                 { this.filterOptions() }
                 { this.renderCollapsibleList() }
-                { console.log(this.state.data) }
                 { this.floatingButton() }
             </View>
         </TouchableWithoutFeedback>
