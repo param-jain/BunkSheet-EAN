@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { ScrollView, Picker, StyleSheet, Platform, Text, View, Modal, Dimensions } from 'react-native'
+import { ScrollView, Picker, TouchableWithoutFeedback, StyleSheet, Platform, Text, View, Modal, Dimensions } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -61,6 +61,22 @@ class User_Profile extends React.Component {
       .catch(error => (console.log("User Profile Auth Error: "+ error)));
     }
 
+    componentWillMount() {
+        this.properBatchSelect();
+    }
+
+    properBatchSelect = () => {
+        if (this.props.year === 'FE') {
+            this.onBatchSelect("A");
+        } else if (this.props.year === 'SE') {
+            this.onBatchSelect("E");
+        } else if (this.props.year === 'TE') {
+            this.onBatchSelect("K");
+        } else if (this.props.year === 'BE') {
+            this.onBatchSelect("P");
+        }
+    }
+
     static propTypes = {
         //avatar: PropTypes.string.isRequired,
         //name: PropTypes.string.isRequired,
@@ -115,7 +131,7 @@ class User_Profile extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -130,6 +146,7 @@ class User_Profile extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="A" value="A" />
                                             <Picker.Item label="B" value="B" />
                                             <Picker.Item label="C" value="C" />
@@ -138,7 +155,7 @@ class User_Profile extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         } else if (this.props.year === 'SE') {
@@ -149,7 +166,7 @@ class User_Profile extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -164,6 +181,7 @@ class User_Profile extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="E" value="E" />
                                             <Picker.Item label="F" value="F" />
                                             <Picker.Item label="G" value="G" />
@@ -172,7 +190,7 @@ class User_Profile extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         } else if (this.props.year === 'TE') {
@@ -183,7 +201,7 @@ class User_Profile extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -198,6 +216,7 @@ class User_Profile extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="K" value="K" />
                                             <Picker.Item label="L" value="L" />
                                             <Picker.Item label="M" value="M" />
@@ -206,7 +225,7 @@ class User_Profile extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         } else if (this.props.year === 'BE') {
@@ -217,7 +236,7 @@ class User_Profile extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <View style={styles.popupOverlay}>
+                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -232,6 +251,7 @@ class User_Profile extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="P" value="P" />
                                             <Picker.Item label="Q" value="Q" />
                                             <Picker.Item label="R" value="R" />
@@ -240,7 +260,7 @@ class User_Profile extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
             );
         }
@@ -309,7 +329,7 @@ class User_Profile extends React.Component {
                     onRequestClose={() => this.setState({branchModalVisible: false})}
                     visible={this.state.branchModalVisible}
                 >
-                    <View style={styles.popupOverlay}>
+                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({branchModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -324,6 +344,7 @@ class User_Profile extends React.Component {
                                         this.setState({branchModalVisible: false});
                                     }}
                                     mode="dropdown">
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="Computer" value="Computer" />
                                     <Picker.Item label="IT" value="IT" />
                                     <Picker.Item label="E&TC" value="E&TC" />
@@ -331,7 +352,7 @@ class User_Profile extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
 
                 <ListItem
@@ -361,7 +382,7 @@ class User_Profile extends React.Component {
                     onRequestClose={() => this.setState({yearModalVisible: false})}
                     visible={this.state.yearModalVisible}
                 >
-                    <View style={styles.popupOverlay}>
+                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({yearModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -376,6 +397,7 @@ class User_Profile extends React.Component {
                                         this.setState({yearModalVisible: false});
                                     }}
                                     mode="dropdown">
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="I Year" value="FE" />
                                     <Picker.Item label="II Year" value="SE" />
                                     <Picker.Item label="III Year" value="TE" />
@@ -384,7 +406,7 @@ class User_Profile extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
 
                 <ListItem
@@ -414,7 +436,7 @@ class User_Profile extends React.Component {
                     onRequestClose={() => this.setState({divisionModalVisible: false})}
                     visible={this.state.divisionModalVisible}
                 >
-                    <View style={styles.popupOverlay}>
+                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({divisionModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
@@ -429,6 +451,7 @@ class User_Profile extends React.Component {
                                         this.setState({divisionModalVisible: false});
                                     }}
                                     mode="dropdown">
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="1" value="1" />
                                     <Picker.Item label="2" value="2" />
                                     <Picker.Item label="3" value="3" />
@@ -444,7 +467,7 @@ class User_Profile extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
 
                 <ListItem
@@ -467,7 +490,7 @@ class User_Profile extends React.Component {
                     }
                     rightIcon={<Chevron />}
                 />
-
+                
                 {this.renderBatchModal()}
 
                 <View style={styles.infoTextContainer}>

@@ -170,6 +170,7 @@ class AcademicDetailsPage extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="A" value="A" />
                                             <Picker.Item label="B" value="B" />
                                             <Picker.Item label="C" value="C" />
@@ -204,6 +205,7 @@ class AcademicDetailsPage extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="E" value="E" />
                                             <Picker.Item label="F" value="F" />
                                             <Picker.Item label="G" value="G" />
@@ -238,6 +240,7 @@ class AcademicDetailsPage extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="K" value="K" />
                                             <Picker.Item label="L" value="L" />
                                             <Picker.Item label="M" value="M" />
@@ -272,6 +275,7 @@ class AcademicDetailsPage extends React.Component {
                                                 this.setState({batchModalVisible: false});
                                             }}
                                             mode="dropdown">
+                                            <Picker.Item label="" value="" />
                                             <Picker.Item label="P" value="P" />
                                             <Picker.Item label="Q" value="Q" />
                                             <Picker.Item label="R" value="R" />
@@ -351,6 +355,7 @@ class AcademicDetailsPage extends React.Component {
                                         this.setState({branchModalVisible: false});
                                     }}
                                     mode="dropdown">
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="Computer" value="Computer" />
                                     <Picker.Item label="IT" value="IT" />
                                     <Picker.Item label="E&TC" value="E&TC" />
@@ -403,6 +408,7 @@ class AcademicDetailsPage extends React.Component {
                                         this.setState({yearModalVisible: false});
                                     }}
                                     mode="dropdown">
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="I Year" value="FE" />
                                     <Picker.Item label="II Year" value="SE" />
                                     <Picker.Item label="III Year" value="TE" />
@@ -456,6 +462,7 @@ class AcademicDetailsPage extends React.Component {
                                         this.setState({divisionModalVisible: false});
                                     }}
                                     mode="dropdown">
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="1" value="1" />
                                     <Picker.Item label="2" value="2" />
                                     <Picker.Item label="3" value="3" />
