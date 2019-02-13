@@ -89,14 +89,14 @@ class Assignments extends React.Component {
               renderItem={({ item }) => (
                 <Card title={item.title} containerStyle={{borderRadius: 15}} dividerStyle={{borderColor: '#FF5722'}}>
                   <View style={{flexDirection:'row', justifyContent:'center', alignContent: 'center'}}>
-                    <Text style={{flex:1, borderWidth: 2, borderColor: '#FFB74D', borderRadius: 10, marginHorizontal: 2, padding: 15}}>{item.nbody}</Text>
+                    <Text style={{flex:1, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15}}>{item.nbody}</Text>
                   </View>
                   <View style={{flexDirection: 'row', justifyContent:'center', alignContent: 'center', marginTop: 7}}>
-                    <Text style={{flex: 4, borderWidth: 2, borderColor: '#FFA726', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.timestamp}</Text>
-                    <TouchableOpacity style={{flex:1, borderWidth: 2, borderColor: '#FF9800', borderRadius: 10, marginHorizontal: 2, padding: 15, justifyContent: 'center', alignContent: 'center'}} onPress={()=>{ Linking.openURL(ROOT_URL+item.filelink)}} >
-                      <Icon name='file-download' size={24} type='material' color = '#2E7D32'/>
+                    <Text style={{flex: 4, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.timestamp}</Text>
+                    <TouchableOpacity style={{flex:1, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, justifyContent: 'center', alignContent: 'center'}} onPress={()=>{ Linking.openURL(ROOT_URL+item.filelink)}} >
+                      <Icon name='file-download' size={24} type='material' color = '#FF9800'/>
                     </TouchableOpacity>
-                    <Text style={{flex: 4, borderWidth: 2, borderColor: '#FFA726', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.tname}</Text>
+                    <Text style={{flex: 4, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.tname}</Text>
                   </View>
                 </Card>
               )}
