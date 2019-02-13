@@ -3,6 +3,7 @@ import { StyleSheet, ActivityIndicator, View, Text, Linking, RefreshControl, Dim
 import { Header, Button, Icon, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import NoticeDetail from '../../Components/NoticeDetail';
 
 const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
 
@@ -78,38 +79,17 @@ class Assignments extends React.Component {
       this.setState({refreshing: false});
     };
   
+    renderNotices() {
+      return this.state.data.map(notice => 
+          <NoticeDetail key={notice._id.toString()} notice={notice} /> 
+      );
+  }
   
     renderCollapsibleList = () => {
       return(
-        <View>
-        <ScrollView refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._handleRefresh}
-            />
-          }>
-          <FlatList
-            keyboardShouldPersistTaps='always'
-              data={this.state.data}
-              renderItem={({ item }) => (
-                <Card title={item.title} containerStyle={{borderRadius: 15}} dividerStyle={{borderColor: '#FF5722'}}>
-                  <View style={{flexDirection:'row', justifyContent:'center', alignContent: 'center'}}>
-                    <Text style={{flex:1, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15}}>{item.nbody}</Text>
-                  </View>
-                  <View style={{flexDirection: 'row', justifyContent:'center', alignContent: 'center', marginTop: 7}}>
-                    <Text style={{flex: 4, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.timestamp}</Text>
-                    <TouchableOpacity style={{flex:1, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, justifyContent: 'center', alignContent: 'center'}} onPress={()=>{ Linking.openURL(ROOT_URL+item.filelink)}} >
-                      <Icon name='file-download' size={24} type='material' color = '#FF9800'/>
-                    </TouchableOpacity>
-                    <Text style={{flex: 4, borderWidth: 1, borderColor: '#eee', borderRadius: 10, marginHorizontal: 2, padding: 15, color: '#666'}}>{item.tname}</Text>
-                  </View>
-                </Card>
-              )}
-        keyExtractor={item => item._id.toString()}
-        ItemSeparatorComponent={this.renderSeparator}
-        />
+        <ScrollView>
+          {this.renderNotices()}
         </ScrollView>
-        </View>
       );
     }
   
@@ -129,13 +109,13 @@ class Assignments extends React.Component {
   filterOptions = () => {
     if (this.state.yearSortFlag === true) {
       return(
-        <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', padding: 5, marginHorizontal: 10}}>
-          <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <View horizontal style={{flexDirection: 'row', marginVertical: 2, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', marginHorizontal: 8}}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
-              <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
+              <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
             </View>
             <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
-              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FF5722', color:'#666', borderRadius: 15}}>Year Wise</Text>
+              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Year Wise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Branch Wise</Text>
@@ -154,10 +134,10 @@ class Assignments extends React.Component {
       );
     } else if (this.state.generalSortFlag === true) {
       return(
-        <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', padding: 5, marginHorizontal: 10}}>
-          <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <View horizontal style={{flexDirection: 'row', marginVertical: 2, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', marginHorizontal: 10}}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
-              <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
+              <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
             </View>
             <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Year Wise</Text>
@@ -166,7 +146,7 @@ class Assignments extends React.Component {
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Branch Wise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FF5722', color:'#666', borderRadius: 15}}>General</Text>
+              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>General</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Division Wise</Text>
@@ -179,10 +159,10 @@ class Assignments extends React.Component {
       );
     } else if (this.state.divisionSortFlag === true) {
       return(
-        <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', padding: 5, marginHorizontal: 10}}>
-          <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <View horizontal style={{flexDirection: 'row', marginVertical: 2, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', marginHorizontal: 10}}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
-              <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
+              <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
             </View>
             <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Year Wise</Text>
@@ -194,7 +174,7 @@ class Assignments extends React.Component {
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>General</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FF5722', color:'#666', borderRadius: 15}}>Division Wise</Text>
+              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Division Wise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
               <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Batch Wise</Text>
@@ -205,16 +185,16 @@ class Assignments extends React.Component {
     }
     else if (this.state.branchSortFlag === true) {
       return(
-        <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', padding: 5, marginHorizontal: 10}}>
-          <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <View horizontal style={{flexDirection: 'row', marginVertical: 2, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', marginHorizontal: 10}}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
-              <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
+              <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
             </View>
             <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Year Wise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FF5722', color:'#666', borderRadius: 15}}>Branch Wise</Text>
+              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Branch Wise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>General</Text>
@@ -230,10 +210,10 @@ class Assignments extends React.Component {
       );
     } else if (this.state.batchSortFlag === true) {
       return(
-        <View horizontal style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', padding: 5, marginHorizontal: 10}}>
-          <ScrollView horizontal={true} style={{padding: 5}} showsHorizontalScrollIndicator={false}>
+        <View horizontal style={{flexDirection: 'row', marginVertical: 2, justifyContent: 'center', alignContent: 'center', borderBottomWidth: 2, borderColor: '#E0E0E0', marginHorizontal: 10}}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={{justifyContent: 'center', alignContent:'center', flex: 1}}>
-              <Icon raised name="filter" type="font-awesome" color="#FF9800"/>
+              <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
             </View>
             <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Year Wise</Text>
@@ -248,7 +228,7 @@ class Assignments extends React.Component {
               <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#666', borderRadius: 15}}>Division Wise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-              <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FF5722', color:'#666', borderRadius: 15}}>Batch Wise</Text>
+              <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Batch Wise</Text>
             </TouchableOpacity>
           </ScrollView>
         </View>

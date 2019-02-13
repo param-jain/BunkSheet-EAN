@@ -14,7 +14,8 @@
       "bundleIdentifier": "com.BunkSheet.BunkSheetEAN"
     },
     "android": {
-      "package": "com.BunkSheet.BunkSheetEAN"
+      "package": "com.BunkSheet.BunkSheetEAN",
+      "googleServicesFile": "./google-services.json"
     },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
