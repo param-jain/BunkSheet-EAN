@@ -10,6 +10,12 @@
       "android"
     ],
     "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.BunkSheet.BunkSheetEAN"
+    },
+    "android": {
+      "package": "com.BunkSheet.BunkSheetEAN"
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
