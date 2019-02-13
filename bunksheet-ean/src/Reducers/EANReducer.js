@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     branch: "E&TC",
     year: "TE",
     division: "8",
-    branch: "L"
+    batch: "L"
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -53,7 +53,7 @@ export default class App extends React.Component {
                 }),
                 navigationOptions: {
                   title: "Notices",
-                  tabBarVisible: false, //=> Remove comment in V2 of EAN Module
+                  tabBarVisible: true, //=> Remove comment in V2 of EAN Module
                   tabBarIcon:({ tintColor }) => {
                     return <Icon name="bullhorn" type="font-awesome" size={22} color={tintColor} />;
                   },
