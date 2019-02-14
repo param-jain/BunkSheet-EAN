@@ -52,22 +52,47 @@ class AcademicDetailsPage extends React.Component {
     }
 
     componentDidMount(){
-        Auth.currentAuthenticatedUser({
-          bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-        }).then(user => {
-          this.setState({
-            userRegID: `${user.attributes["custom:college_reg_id"]}`,
-            fName: `${user.attributes["name"]}`,
-            lName: `${user.attributes["family_name"]}`,
-            email: `${user.attributes["email"]}`,
-            sub: `${user.attributes["sub"]}`
-          });
-        console.log("EAN User Attributes: "+user.attributes);
-      })
-      .catch(error => console.log("Academic Details Error " + error ));
+        this.CognitoLoggedCurrentUser();
     }
 
-    sendDetailsToBackend = (token) => {
+    CognitoLoggedCurrentUser() {
+        const { pakkaEmail, pakkaPassword } = this.props;
+
+        this.setState({ loading: true, errorMessage: '' });
+
+        Auth.signIn(pakkaEmail, pakkaPassword)
+            .then(user => {
+                    console.log("ADP: User Logged In Successfully => " + user);
+                    //this.setState({ loading: false });
+                    //this.props.navigation.navigate('ean_home', user); 
+                    Auth.currentAuthenticatedUser({
+                        bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+                      }).then(user => {
+                        this.setState({
+                          userRegID: `${user.attributes["custom:college_reg_id"]}`,
+                          fName: `${user.attributes["name"]}`,
+                          lName: `${user.attributes["family_name"]}`,
+                          email: `${user.attributes["email"]}`,
+                          sub: `${user.attributes["sub"]}`,
+                          loading: false
+                        });
+                      console.log("ADP: EAN Academic Details User Attributes: "+user.attributes);
+                      console.log("ADP: EAN Current State User Attributes: "+this.state.userRegID+ " "+ this.state.sub);
+                    })
+                    .catch(error => {
+                        this.setState({loading: false});
+                        console.log("Academic Details: Error > Unable to Fetch User Attributes => " + error)
+                    });              
+                })
+            .catch(err => { 
+                this.setState({ loading: false });
+                this.setState({ errorMessage: err.message }); 
+                console.log("ADP: UserName, Password => " + this.props.pakkaEmail + " " + this.props.pakkaPassword);
+                console.log("ADP: Cannot Log In => " + err);
+            });
+    }
+
+    async sendDetailsToBackend(token) {
 
       const url = ROOT_URL+`nd/addUser`;
       this.setState({ loading: true });
@@ -91,12 +116,16 @@ class AcademicDetailsPage extends React.Component {
         }
       }
 
-      axios.post( url, userDetails, config)
+      await axios.post( url, userDetails, config)
       .then(res => {
-        console.log("User Details sent to Backend Successfully");
+        console.log("ADP: User Details sent to Backend Successfully => " + res);
+        this.props.navigation.navigate('ean_home');
+        this.setState({ loading: false });
       })
       .catch(error => {
-        console.log("User Details NOT sent to Backend i.e. REQUEST FAILED");
+        console.log("ADP: User Details NOT sent to Backend i.e. REQUEST FAILED =>" + error);
+        this.props.navigation.navigate('ean_home');
+        this.setState({ loading: false });
       });
 
     }
@@ -105,7 +134,6 @@ class AcademicDetailsPage extends React.Component {
       let token = await Notifications.getExpoPushTokenAsync();
       //console.log("ADP token => " + token );
       this.sendDetailsToBackend(token);
-      this.props.navigation.navigate('ean_home');
     }
 
     onPressBranchSelectionModal = () => {
@@ -138,12 +166,6 @@ class AcademicDetailsPage extends React.Component {
 
     onBatchSelect = (text) => {
       this.props.eanUserBatchSelect(text);
-    }
-
-    signOut = () => {
-      Auth.signOut()
-        .then(data => this.props.navigation.navigate('login'))
-        .catch(err => console.log("Fresh Arrivals LogOut Error: " + err));
     }
 
     renderBatchModal = () => {
@@ -298,6 +320,7 @@ class AcademicDetailsPage extends React.Component {
         </View>
       );
     }
+
     const { avatar, fName, lName, email } = this.state;
     return (
         <View style={styles.container}>
@@ -307,6 +330,10 @@ class AcademicDetailsPage extends React.Component {
                     <Text style={styles.titleViewText}>Just Little More About Yourself ...</Text>
                 </View>
               </View>
+
+              <View style={{flex:1, justifyContent: 'center' }}>
+                <ActivityIndicator animating={this.state.loading} size="large" />
+            </View>
                 
             <View style={styles.infoTextContainer}>
                 <Text style={styles.infoText}>Academic Information</Text>
@@ -619,7 +646,9 @@ const mapStateToProps = (state) => ({
     branch: state.ean.branch,
     year: state.ean.year,
     division: state.ean.division,
-    batch: state.ean.batch
+    batch: state.ean.batch,
+    pakkaEmail: state.sign_up.pakkaEmail,
+    pakkaPassword: state.sign_up.pakkaPassword,
 });
 
 export default connect(mapStateToProps, {eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect})(AcademicDetailsPage);

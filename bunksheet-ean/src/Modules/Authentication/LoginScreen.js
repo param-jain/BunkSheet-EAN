@@ -21,7 +21,7 @@ class LoginScreen extends Component {
 
         Auth.currentSession()
             .then(data => this.props.navigation.navigate('ean_home'))
-            .catch(error => console.log('No User Logged In')); 
+            .catch(error => console.log('Login Screen: '+ error)); 
     }
 
     constructor(props) {
@@ -63,7 +63,6 @@ class LoginScreen extends Component {
                 this.setState({ isAuthenticating: false });
                 this.setState({ errorMessage: err.message }); 
             });
-
     }
 
     onSignUpPress() {

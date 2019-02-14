@@ -75,4 +75,20 @@ screen: createBottomTabNavigator({
       />
       </ScrollView>
 
+
+      Auth.currentAuthenticatedUser({
+          bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+        }).then(user => {
+          this.setState({
+            userRegID: `${user.attributes["custom:college_reg_id"]}`,
+            fName: `${user.attributes["name"]}`,
+            lName: `${user.attributes["family_name"]}`,
+            email: `${user.attributes["email"]}`,
+            sub: `${user.attributes["sub"]}`
+          });
+        console.log("EAN User Attributes: "+user.attributes);
+      })
+      .catch(error => console.log("Academic Details Error > Unable to Fetch User Attributes " + error ));
+    
+
 */

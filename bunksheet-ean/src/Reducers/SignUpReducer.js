@@ -24,17 +24,19 @@ const INITIAL_STATE = {
     regID: '',
     regIDTouched: false,
     OTP: '',
-    OTPTouched: false
+    OTPTouched: false,
+    pakkaEmail: '',
+    pakkaPassword: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
 
         case SIGNUP_EMAIL_CHANGED:
-            return { ...state, email: action.payload, emailTouched: true };
+            return { ...state, email: action.payload, pakkaEmail: action.payload , emailTouched: true };
 
         case SIGNUP_PASSWORD_CHANGED:
-            return { ...state, password: action.payload, passwordTouched: true };
+            return { ...state, password: action.payload, pakkaPassword: action.payload, passwordTouched: true };
 
         case SIGNUP_VERIFY_PASSWORD_CHANGED:
             return { ...state, verifyPassword: action.payload, verifyPasswordTouched: true };

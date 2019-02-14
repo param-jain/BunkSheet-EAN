@@ -403,7 +403,9 @@ const mapStateToProps = (state) => ({
     lName: state.sign_up.lName,
     lNameTouched: state.sign_up.lNameTouched,
     regID: state.sign_up.regID,
-    regIDTouched: state.sign_up.regIDTouched
+    regIDTouched: state.sign_up.regIDTouched,
+    pakkaEmail: state.sign_up.pakkaEmail,
+    pakkaPassword: state.sign_up.pakkaPassword
 });
 
 export default connect(mapStateToProps, { 
