@@ -5,7 +5,13 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import NoticeDetail from '../../Components/NoticeDetail';
 
+import Amplify, { Auth } from 'aws-amplify';
+import awsConfig from '../../Sensitive_Info/aws-exports';
+Amplify.configure({ Auth: awsConfig });
+
 const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
+
+import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
 class Assignments extends React.Component {
   
@@ -38,7 +44,62 @@ class Assignments extends React.Component {
     }
   
     async componentDidMount() {
-     await this.makeRemoteRequest();
+      await Auth.currentAuthenticatedUser({
+        bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+      }).then(user => {
+        this.setState({
+          userRegID: `${user.attributes["custom:college_reg_id"]}`,
+          fName: `${user.attributes["name"]}`,
+          lName: `${user.attributes["family_name"]}`,
+          email: `${user.attributes["email"]}`,
+          sub: `${user.attributes["sub"]}`
+        });
+      console.log("EAN User Attributes: " + user.attributes["sub"]);
+      this.getDataFromBackend();
+    })
+    .catch(error => (console.log("User Profile Auth Error: "+ error)));
+    }
+    
+    async getDataFromBackend() {
+      const url = ROOT_URL+`nd/getDetails`;
+      this.setState({ loading: true, yearSortFlag: false, branchSortFlag: false, generalSortFlag: true, divisionSortFlag: false, batchSortFlag: false});
+    
+      fetch(url, {
+          method: 'POST',
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              //sub: '70730da8-374f-4199-b252-573718f26949'
+              sub: this.state.sub
+          }),
+          })
+          .then((response) => response.json())
+          .then((responseJson) => {
+            console.log(responseJson.year);
+              this.onYearSelect(responseJson.year);
+              this.onBranchSelect(responseJson.branch);
+              this.onDivisionSelect(responseJson.division);
+              this.onBatchSelect(responseJson.batch);
+              this.makeRemoteRequest();
+          })
+          .catch(err => console.log("Notices Page: Backend Data Fetch => " + err));
+      }
+    
+    onBranchSelect = (text) => {
+        this.props.eanUserBranchSelect(text);
+    }
+    
+    onYearSelect = (text) => {
+      this.props.eanUserYearSelect(text);
+    }
+    
+    onDivisionSelect = (text) => {
+      this.props.eanUserDivisionSelect(text);
+    }
+    onBatchSelect = (text) => {
+      this.props.eanUserBatchSelect(text);
     }
   
     makeRemoteRequest = () => {
@@ -365,4 +426,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {})(Assignments);
+export default connect(mapStateToProps, {eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect})(Assignments);

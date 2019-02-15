@@ -1,10 +1,8 @@
-
 import React, { Component } from 'react'
 import { ScrollView, Picker, TouchableWithoutFeedback, StyleSheet, Platform, Text, View, Modal, Dimensions } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
 import BaseIcon from '../../Styles/Icon'
 import Chevron from '../../Styles/Chevron'
 
@@ -14,8 +12,10 @@ Amplify.configure({ Auth: awsConfig });
 
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
-class User_Profile extends React.Component {
+import axios from 'axios';
+const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
 
+class User_Profile extends React.Component {
 
     static navigationOptions = (props) => {
         
@@ -42,47 +42,58 @@ class User_Profile extends React.Component {
             userRegID: 'E2K1610000',
             fName: 'Param',
             lName: 'Jain',
-            email: 'param@bunksheet.com'
+            email: 'param@bunksheet.com',
+            sub: '',
+            year: '',
+            branch: '',
+            division: '',
+            batch: '',
+            data: []
         }
     }
 
-    componentDidMount(){
-        Auth.currentAuthenticatedUser({
+    async componentDidMount(){
+        await Auth.currentAuthenticatedUser({
           bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
         }).then(user => {
           this.setState({
             userRegID: `${user.attributes["custom:college_reg_id"]}`,
             fName: `${user.attributes["name"]}`,
             lName: `${user.attributes["family_name"]}`,
-            email: `${user.attributes["email"]}`
+            email: `${user.attributes["email"]}`,
+            sub: `${user.attributes["sub"]}`
           });
-        console.log("EAN User Attributes: "+user.attributes);
+        console.log("EAN User Attributes: " + user.attributes["sub"]);
+        this.getDataFromBackend();
       })
       .catch(error => (console.log("User Profile Auth Error: "+ error)));
     }
 
-    componentWillMount() {
-        this.properBatchSelect();
-    }
+    async getDataFromBackend() {
+        const url = ROOT_URL+`nd/getDetails`;
+        this.setState({ loading: true, yearSortFlag: false, branchSortFlag: false, generalSortFlag: true, divisionSortFlag: false, batchSortFlag: false});
 
-    properBatchSelect = () => {
-        if (this.props.year === 'FE') {
-            this.onBatchSelect("A");
-        } else if (this.props.year === 'SE') {
-            this.onBatchSelect("E");
-        } else if (this.props.year === 'TE') {
-            this.onBatchSelect("K");
-        } else if (this.props.year === 'BE') {
-            this.onBatchSelect("P");
-        }
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                //sub: '70730da8-374f-4199-b252-573718f26949'
+                sub: this.state.sub
+            }),
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+              console.log(responseJson.year);
+                this.onYearSelect(responseJson.year);
+                this.onBranchSelect(responseJson.branch);
+                this.onDivisionSelect(responseJson.division);
+                this.onBatchSelect(responseJson.batch);
+            })
+            .catch(err => console.log("Notices Page: Backend Data Fetch => " + err));
     }
-
-    static propTypes = {
-        //avatar: PropTypes.string.isRequired,
-        //name: PropTypes.string.isRequired,
-        //navigation: PropTypes.object.isRequired,
-        //email: PropTypes.string.isRequired,
-      }
 
     onPressBranchSelectionModal = () => {
         this.setState({branchModalVisible: true});
@@ -119,7 +130,7 @@ class User_Profile extends React.Component {
     signOut = () => {
       Auth.signOut()
         .then(data => this.props.navigation.navigate('login'))
-        .catch(err => console.log("Fresh Arrivals LogOut Error: " + err));
+        .catch(err => console.log("User Profile: LogOut Error: " + err));
     }
 
     renderBatchModal = () => {
