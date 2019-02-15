@@ -504,6 +504,27 @@ class User_Profile extends React.Component {
                 
                 {this.renderBatchModal()}
 
+                <ListItem
+                    hideChevron
+                    title="Save the above Details"
+                    titleStyle={{ alignSelf: 'center', padding: 5, borderRadius: 10, color: '#FF9800', textShadowRadius: 10, textShadowColor: 'rgba(0, 0, 0, 0.10)', textShadowOffset: {width: -1, height: 1} }}
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => (console.log('HOLA AMIGOS!!!'))}
+                    containerStyle={styles.listItemContainer}
+                    /*leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#A4C8F0',
+                            }}
+                            icon={{
+                            type: 'font-awesome',
+                            name: 'columns',
+                            }}
+                        />
+                    }
+                    rightIcon={<Chevron />}*/
+                />
+
                 <View style={styles.infoTextContainer}>
                     <Text style={styles.infoText}>More</Text>
                 </View>
