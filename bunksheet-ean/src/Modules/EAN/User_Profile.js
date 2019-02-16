@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Picker, TouchableWithoutFeedback, StyleSheet, Platform, Text, View, Modal, Dimensions } from 'react-native'
+import { ScrollView, ActivityIndicator, Picker, TouchableWithoutFeedback, StyleSheet, Platform, Text, View, Modal, Dimensions } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -92,8 +92,13 @@ class User_Profile extends React.Component {
                 this.onBranchSelect(responseJson.branch);
                 this.onDivisionSelect(responseJson.division);
                 this.onBatchSelect(responseJson.batch);
+                this.setState({ loading: false });
+
             })
-            .catch(err => console.log("Notices Page: Backend Data Fetch => " + err));
+            .catch(err => {
+                console.log("Notices Page: Backend Data Fetch => " + err);
+                this.setState({ loading: false });
+        });
     }
 
     async onUpdateDataSelect(){
@@ -125,8 +130,12 @@ class User_Profile extends React.Component {
             .then((response) => response.json())
             .then((responseJson) => {
               console.log("UP Data Sent Successfully => "+responseJson.year);
+              this.setState({ loading: false });
             })
-            .catch(err => console.log("Error UPPage: Backend Data Send => " + err));
+            .catch(err => {
+                console.log("Error UPPage: Backend Data Send => " + err);
+                this.setState({ loading: false });
+            });
     
     }
 
@@ -313,6 +322,15 @@ class User_Profile extends React.Component {
      }
 
   render() {
+
+    if (this.state.loading) {
+        return (
+          <View style={{flex:1, justifyContent: 'center' }}>
+            <ActivityIndicator animating={this.state.loading} size="large" />
+          </View>
+        );
+      }
+
     const { avatar, fName, lName, email } = this.state;
     return (
         <View style={styles.container}>
