@@ -11,7 +11,7 @@
     ],
     "version": "1.0.0",
     "ios": {
-      "bundleIdentifier": "com.BunkSheet.BunkSheetEAN"
+      "supportsTablet": true
     },
     "android": {
       "package": "com.BunkSheet.BunkSheetEAN",
@@ -29,9 +29,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    ]
   }
 }
