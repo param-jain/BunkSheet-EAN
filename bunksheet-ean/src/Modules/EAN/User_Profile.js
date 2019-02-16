@@ -3,6 +3,7 @@ import { ScrollView, Picker, TouchableWithoutFeedback, StyleSheet, Platform, Tex
 import { Avatar, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Notifications } from 'expo'
 import BaseIcon from '../../Styles/Icon'
 import Chevron from '../../Styles/Chevron'
 
@@ -39,10 +40,10 @@ class User_Profile extends React.Component {
             yearModalVisible: false,
             divisionModalVisible: false,
             batchModalVisible: false,
-            userRegID: 'E2K1610000',
-            fName: 'Param',
-            lName: 'Jain',
-            email: 'param@bunksheet.com',
+            userRegID: '',
+            fName: '',
+            lName: '',
+            email: '',
             sub: '',
             year: '',
             branch: '',
@@ -71,7 +72,7 @@ class User_Profile extends React.Component {
 
     async getDataFromBackend() {
         const url = ROOT_URL+`nd/getDetails`;
-        this.setState({ loading: true, yearSortFlag: false, branchSortFlag: false, generalSortFlag: true, divisionSortFlag: false, batchSortFlag: false});
+        this.setState({ loading: true });
 
         fetch(url, {
             method: 'POST',
@@ -93,6 +94,40 @@ class User_Profile extends React.Component {
                 this.onBatchSelect(responseJson.batch);
             })
             .catch(err => console.log("Notices Page: Backend Data Fetch => " + err));
+    }
+
+    async onUpdateDataSelect(){
+        const url = ROOT_URL+`nd/updateUser`;
+        this.setState({ loading: true });
+        let token = await Notifications.getExpoPushTokenAsync();
+        //console.log("ADP token => " + token );
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                //sub: '70730da8-374f-4199-b252-573718f26949'
+                expoToken: token,
+                sub: this.state.sub,
+                branch: this.props.branch,
+                batch: this.props.batch,
+                year: this.props.year,
+                division: this.props.division,
+                regId: this.state.userRegID,
+                fName: this.state.fName,
+                lName: this.state.lName,
+                email: this.state.email
+            }),
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+              console.log("UP Data Sent Successfully => "+responseJson.year);
+            })
+            .catch(err => console.log("Error UPPage: Backend Data Send => " + err));
+    
     }
 
     onPressBranchSelectionModal = () => {
@@ -509,7 +544,7 @@ class User_Profile extends React.Component {
                     title="Save the above Details"
                     titleStyle={{ alignSelf: 'center', padding: 5, borderRadius: 10, color: '#FF9800', textShadowRadius: 10, textShadowColor: 'rgba(0, 0, 0, 0.10)', textShadowOffset: {width: -1, height: 1} }}
                     rightTitleStyle={{ fontSize: 15 }}
-                    onPress={() => (console.log('HOLA AMIGOS!!!'))}
+                    onPress={() => this.onUpdateDataSelect()}
                     containerStyle={styles.listItemContainer}
                     /*leftIcon={
                         <BaseIcon
