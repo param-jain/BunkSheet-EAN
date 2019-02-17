@@ -20,9 +20,14 @@ class LoginScreen extends Component {
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
         this.setState({ isAuthenticating: true });
         Auth.currentSession()
-            .then(data => this.props.navigation.navigate('ean_home'))
-            .catch(error => console.log('Login Screen: '+ error)); 
-        this.setState({ isAuthenticating: false });
+            .then(data => { 
+                this.setState({ isAuthenticating: false });
+                this.props.navigation.navigate('ean_home');
+            })
+            .catch(error => {
+                this.setState({ isAuthenticating: false });
+                console.log('Login Screen: '+ error)}
+            ); 
     }
 
     constructor(props) {

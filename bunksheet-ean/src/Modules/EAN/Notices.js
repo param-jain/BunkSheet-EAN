@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Alert, BackHandler, View, Text, Dimensions, Platform, RefreshControl, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Animated, Alert, BackHandler, View, Text, Dimensions, Platform, RefreshControl, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
 import { Icon, Card} from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -180,9 +180,12 @@ class Notices extends React.Component {
 
   renderCollapsibleList = () => {
     return(
-      <ScrollView>
+      <Animated.View style={{flex: 1, marginVertical: 5}}>
+        <Animated.ScrollView style={{flex: 1}}>
         {this.renderNotices()}
-      </ScrollView>
+      </Animated.ScrollView>
+      </Animated.View>
+
     );
   }
 
