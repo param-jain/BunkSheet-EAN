@@ -177,9 +177,12 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
+                        <View style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
+                                <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({batchModalVisible: false})} >
+                                    <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                                </TouchableOpacity>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                         <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
                                     </View>
@@ -201,7 +204,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
+                        </View>
                     </Modal>
             );
         } else if (this.props.year === 'SE') {
@@ -212,9 +215,12 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
+                        <View style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
+                                    <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({batchModalVisible: false})} >
+                                        <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                                    </TouchableOpacity>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                         <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
                                     </View>
@@ -236,7 +242,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
+                        </View>
                     </Modal>
             );
         } else if (this.props.year === 'TE') {
@@ -247,9 +253,12 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
+                        <View style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
+                                    <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({batchModalVisible: false})} >
+                                        <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                                    </TouchableOpacity>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                         <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
                                     </View>
@@ -271,7 +280,7 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
+                        </View>
                     </Modal>
             );
         } else if (this.props.year === 'BE') {
@@ -282,9 +291,12 @@ class AcademicDetailsPage extends React.Component {
                         onRequestClose={() => this.setState({batchModalVisible: false})}
                         visible={this.state.batchModalVisible}
                     >
-                        <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
+                        <View style={styles.popupOverlay } onPress={() => this.setState({batchModalVisible: false})}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
+                                    <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({batchModalVisible: false})} >
+                                        <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                                    </TouchableOpacity>
                                     <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                         <Text style={styles.modalTitle}>Select Your Practical Batch</Text>
                                     </View>
@@ -306,11 +318,11 @@ class AcademicDetailsPage extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
+                        </View>
                     </Modal>
             );
         }
-     }
+    }
 
   render() {
     if (this.state.loading) {
@@ -367,9 +379,12 @@ class AcademicDetailsPage extends React.Component {
                     onRequestClose={() => this.setState({branchModalVisible: false})}
                     visible={this.state.branchModalVisible}
                 >
-                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({branchModalVisible: false})}>
+                    <View style={styles.popupOverlay }>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
+                            <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({branchModalVisible: false})} >
+                                <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                            </TouchableOpacity>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                 <Text style={styles.modalTitle}>Select Your Branch</Text>
                             </View>
@@ -390,7 +405,7 @@ class AcademicDetailsPage extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </View>
                 </Modal>
 
                 <ListItem
@@ -420,9 +435,12 @@ class AcademicDetailsPage extends React.Component {
                     onRequestClose={() => this.setState({yearModalVisible: false})}
                     visible={this.state.yearModalVisible}
                 >
-                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({yearModalVisible: false})}>
+                    <View style={styles.popupOverlay } onPress={() => this.setState({yearModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
+                            <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({yearModalVisible: false})} >
+                                <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                            </TouchableOpacity>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                 <Text style={styles.modalTitle}>Select Academic Year</Text>
                             </View>
@@ -444,7 +462,7 @@ class AcademicDetailsPage extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </View>
                 </Modal>
 
                 <ListItem
@@ -474,9 +492,12 @@ class AcademicDetailsPage extends React.Component {
                     onRequestClose={() => this.setState({divisionModalVisible: false})}
                     visible={this.state.divisionModalVisible}
                 >
-                    <TouchableWithoutFeedback style={styles.popupOverlay } onPress={() => this.setState({divisionModalVisible: false})}>
+                    <View style={styles.popupOverlay } onPress={() => this.setState({divisionModalVisible: false})}>
                         <View style={styles.popup}>
                             <View style={styles.popupContent}>
+                            <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({divisionModalVisible: false})} >
+                                <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                            </TouchableOpacity>
                             <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
                                 <Text style={styles.modalTitle}>Select Your Division</Text>
                             </View>
@@ -505,7 +526,7 @@ class AcademicDetailsPage extends React.Component {
                             </View>
                             </View>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </View>
                 </Modal>
 
                 <ListItem
@@ -528,7 +549,7 @@ class AcademicDetailsPage extends React.Component {
                     }
                     rightIcon={<Chevron />}
                 />
-
+                
                 {this.renderBatchModal()}
 
                 <TouchableOpacity 
@@ -595,6 +616,8 @@ const styles = StyleSheet.create({
     marginTop: 80,
     marginHorizontal: 20,
     borderRadius: 15,
+    borderWidth: 1,
+    borderColor: '#666'
   },
   popupOverlay: {
     backgroundColor: "#00000057",
@@ -607,7 +630,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 5,
-    height:"50%",
+    height:"80%",
   },
   modalTitle:{
     fontSize:22,
