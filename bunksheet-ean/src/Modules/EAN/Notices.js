@@ -395,18 +395,12 @@ batchWiseSort = () => {
       );
     }
 
-    return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
-        {/*<Image style={styles.bg} source={require('../../Images/fff806b176e96203071782d3684d2079.png')} /> */}
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>         
-          <View style={styles.container}>
-              {this.filterOptions()}
-              {this.renderCollapsibleList()}
-              {this.floatingButton()}
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+    return (   
+      <View style={styles.container}>
+          {this.filterOptions()}
+          {this.renderCollapsibleList()}
+          {this.floatingButton()}
+      </View>
     );
   }
 }

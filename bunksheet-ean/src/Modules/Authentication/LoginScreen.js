@@ -21,6 +21,7 @@ class LoginScreen extends Component {
         this.setState({ isAuthenticating: true });
         Auth.currentSession()
             .then(data => { 
+                console.log("Login Data => "+ data);
                 this.setState({ isAuthenticating: false });
                 this.props.navigation.navigate('ean_home');
             })
