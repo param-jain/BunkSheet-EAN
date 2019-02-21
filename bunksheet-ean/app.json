@@ -14,7 +14,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.BunkSheet.BunkSheetEAN",
+      "package": "com.BunkSheet.BunkSheet",
       "googleServicesFile": "./google-services.json"
     },
     "orientation": "portrait",

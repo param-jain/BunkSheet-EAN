@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "964807275447",
-    "firebase_url": "https://bunksheet-e8ba9.firebaseio.com",
-    "project_id": "bunksheet-e8ba9",
-    "storage_bucket": "bunksheet-e8ba9.appspot.com"
+    "project_number": "676392532985",
+    "firebase_url": "https://bunksheet-5bd1b.firebaseio.com",
+    "project_id": "bunksheet-5bd1b",
+    "storage_bucket": "bunksheet-5bd1b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:964807275447:android:44a47883fede19ee",
+        "mobilesdk_app_id": "1:676392532985:android:149262a19a6b9ec5",
         "android_client_info": {
-          "package_name": "com.BunkSheet.BunkSheetEAN"
+          "package_name": "com.BunkSheet.BunkSheet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "964807275447-i2d6g6mpe4qrjd5jcfqu5s85hig47s08.apps.googleusercontent.com",
+          "client_id": "676392532985-rgobi9cfnakre9q10sqn5svc2nt19dft.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDBWSQpnSHFbWgcRNG10nYSl-UkcyCeoko"
+          "current_key": "AIzaSyChAV-qKfRCFEa5IUm7LaF_BxHm0f2ANHc"
         }
       ],
       "services": {
