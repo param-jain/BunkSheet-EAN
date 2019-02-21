@@ -104,15 +104,15 @@ class SignUpScreen_2 extends Component {
               if (this.state.greenFlag) {
                   this.setState({ dbStudentName: JSON.stringify(responseJson[0].Name)});
                   console.log(this.state.dbStudentName);
-                  if (this.state.dbStudentName.includes(fName)&&this.state.dbStudentName.includes(lName)) {
+                  if (this.state.dbStudentName.toUpperCase().includes(fName.toUpperCase())&&this.state.dbStudentName.toUpperCase().includes(lName.toUpperCase())) {
                     Auth.signUp({
                       username: email,
                       password: password,
                       attributes: {
                       email: email,
-                      name: fName,
-                      family_name: lName,
-                      'custom:college_reg_id': regID
+                      name: fName.toUpperCase(),
+                      family_name: lName.toUpperCase(),
+                      'custom:college_reg_id': regID.toUpperCase()
                     }
                   })
                     .then(data => { 

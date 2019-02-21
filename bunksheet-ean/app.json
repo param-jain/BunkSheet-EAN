@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Bunksheet E.A.N",
-    "description": "Exams - Assignments - Notices",
-    "slug": "bunksheet-ean",
+    "name": "Bunksheet",
+    "description": "College Life Made Easy!",
+    "slug": "bunksheet",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": [
