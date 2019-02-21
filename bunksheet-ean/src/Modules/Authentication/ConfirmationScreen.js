@@ -20,7 +20,8 @@ import { connect } from 'react-redux'
 
 import { 
   signupOTPChanged,
-  signupEmailChanged
+  signupEmailChanged,
+  signupCreateAccount
 } from '../../Actions/index'
 
 import  Amplify, { Auth } from 'aws-amplify';
@@ -40,6 +41,11 @@ class ConfirmationScreen extends Component {
         isAuthenticating: false,
         username: this.props.navigation.state.params.user.username,
     }
+}
+
+componentDidMount() {
+  const { email, password, fName, lName, regID } = this.props;
+  this.props.signupCreateAccount(email, password, fName, lName, regID);
 }
 
     backButtonNavigation() {
@@ -275,10 +281,16 @@ let styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
     OTP: state.sign_up.OTP,
     OTPTouched: state.sign_up.OTPTouched,
-    email: state.sign_up.email
+    email: state.sign_up.email,
+    password: state.sign_up.password,
+    isAuthenticating: state.sign_up.isAuthenticating,
+    fName: state.sign_up.fName,
+    lName: state.sign_up.lName,
+    regID: state.sign_up.regID,
 });
 
 export default connect(mapStateToProps, {
     signupOTPChanged,
-    signupEmailChanged
+    signupEmailChanged,
+    signupCreateAccount
 })(ConfirmationScreen);

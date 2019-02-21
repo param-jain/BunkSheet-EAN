@@ -32,7 +32,7 @@ import awsConfig from '../../Sensitive_Info/aws-exports';
 
 Amplify.configure({ Auth: awsConfig });
 
-import axios from 'axios';
+const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
 
 class SignUpScreen_2 extends Component {
 
@@ -41,7 +41,9 @@ class SignUpScreen_2 extends Component {
 
     this.state = {
         errorMessage: '',
-        isAuthenticating: false
+        isAuthenticating: false,
+        dbStudentName: '',
+        greenFlag: false 
     }
 }
 
@@ -52,27 +54,86 @@ class SignUpScreen_2 extends Component {
 
     proceedToSignUp() {
         const { email, password, fName, lName, regID } = this.props;
-        this.props.signupCreateAccount(email, password, fName, lName, regID);
-        this.setState({ isAuthenticating: true, errorMessage: '' }); 
+        //this.props.signupCreateAccount(email, password, fName, lName, regID);
+        this.setState({ isAuthenticating: true, errorMessage: '', greenFlag: false }); 
 
-        Auth.signUp({
-          username: email,
-          password: password,
-          attributes: {
-            email: email,
-            name: fName,
-            family_name: lName,
-            'custom:college_reg_id': regID
+        const url = ROOT_URL+`nd/verifyUser`;
+
+        const postData = {
+          regId: regID
+        }
+
+        const config = {
+          Headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
-        })
-          .then(data => { 
-            this.setState({ isAuthenticating: false });
-            this.props.navigation.navigate('otp_confirmation', data);
+        }
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              //regId: 'E2K16100000'
+              regId: regID.toUpperCase()
+          }),
+          }).then((response) => {
+            if (response.status === 404) {
+              console.log(response.status);
+              this.setState({errorMessage: 'Invalid Registration ID. Please go back and reinitiate the Signup Process', isAuthenticating: false, greenFlag: false});
+            } else {
+              this.setState({greenFlag: true});
+            }
           })
-          .catch(err => { 
-            this.setState({ isAuthenticating: false });
-            this.setState({ errorMessage: err.message }) 
-          });
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                regId: regID.toUpperCase()
+            }),
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+
+              if (this.state.greenFlag) {
+                  this.setState({ dbStudentName: JSON.stringify(responseJson[0].Name)});
+                  console.log(this.state.dbStudentName);
+                  if (this.state.dbStudentName.includes(fName)&&this.state.dbStudentName.includes(lName)) {
+                    Auth.signUp({
+                      username: email,
+                      password: password,
+                      attributes: {
+                      email: email,
+                      name: fName,
+                      family_name: lName,
+                      'custom:college_reg_id': regID
+                    }
+                  })
+                    .then(data => { 
+                      this.setState({ isAuthenticating: false });
+                      this.props.navigation.navigate('otp_confirmation', data);
+                    })
+                    .catch(err => { 
+                      this.setState({ isAuthenticating: false });
+                      this.setState({ errorMessage: err.message }) 
+                    });
+                  } else {
+                    this.setState({ errorMessage: 'Entered Details does not match with your Registration ID', isAuthenticating: false})
+                  }
+                  //this.setState({ isAuthenticating: false });
+              }
+            })
+            .catch(err => {
+                console.log("Error SUS2 => " + err);
+                console.log("Error SUS2 => " + err.status);
+                this.setState({ isAuthenticating: false });
+            });
     }
 
     onFNameChange(text) {
