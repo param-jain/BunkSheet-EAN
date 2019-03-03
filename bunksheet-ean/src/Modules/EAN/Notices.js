@@ -385,8 +385,6 @@ batchWiseSort = () => {
 }
 
   render() {
-    
-    
     if (this.state.loading) {
       return (
         <View style={{flex:1, justifyContent: 'center' }}>
@@ -397,6 +395,7 @@ batchWiseSort = () => {
 
     return (   
       <View style={styles.container}>
+      <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
           {this.filterOptions()}
           {this.renderCollapsibleList()}
           {this.floatingButton()}

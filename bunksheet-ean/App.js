@@ -49,7 +49,7 @@ export default class App extends React.Component {
               ean_home: {
                 screen: createStackNavigator({
                   notices: { screen: Notices },     
-                  profile: { screen: User_Profile } 
+                  profile: { screen: User_Profile, navigationOptions: { tabBarVisible: false } } 
                 }),
                 navigationOptions: {
                   title: "Notices",

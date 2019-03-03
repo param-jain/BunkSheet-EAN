@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ActivityIndicator, View, Text, Linking, RefreshControl, Dimensions, ScrollView, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, FlatList } from 'react-native';
+import { StyleSheet, ImageBackground, ActivityIndicator, View, Text, Linking, RefreshControl, Dimensions, ScrollView, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, FlatList } from 'react-native';
 import { Header, Button, Icon, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -352,12 +352,15 @@ class Assignments extends React.Component {
 
     renderHeader = () => {
         return(
-          <Header
-            backgroundColor="#FF6D00"
-            statusBarProps={{backgroundColor: "#FF6D00"}}
-            outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-            centerComponent={{ text: 'Assignments' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
-          />
+          <View style={{height: '11.5%'}}>
+          <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../Images/header_image.jpeg')}>
+            <Header
+              backgroundColor='transparent'
+              outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+              centerComponent={{ text: 'Exams' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+            />
+          </ImageBackground>
+        </View>
         );
       }
     
@@ -376,6 +379,7 @@ class Assignments extends React.Component {
 
     return (
       <View style={styles.container}>
+      <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
           { this.renderHeader() }
           { this.filterOptions() }
           { this.renderCollapsibleList() }
