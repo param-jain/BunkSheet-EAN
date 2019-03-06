@@ -357,7 +357,7 @@ class Assignments extends React.Component {
             <Header
               backgroundColor='transparent'
               outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-              centerComponent={{ text: 'Exams' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+              centerComponent={{ text: 'Assignments' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
             />
           </ImageBackground>
         </View>

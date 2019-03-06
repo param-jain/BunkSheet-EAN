@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Animated, Alert, BackHandler, View, Text, Dimensions, Platform, RefreshControl, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Animated, Alert, BackHandler, View, Text, Dimensions, Platform, RefreshControl, Linking, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback, Keyboard, ScrollView, FlatList, ImageBackground } from 'react-native';
 import { Icon, Card} from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -395,10 +395,10 @@ batchWiseSort = () => {
 
     return (   
       <View style={styles.container}>
-      <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
-          {this.filterOptions()}
-          {this.renderCollapsibleList()}
-          {this.floatingButton()}
+      <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
+            {this.filterOptions()}
+            {this.renderCollapsibleList()}
+            {this.floatingButton()}
       </View>
     );
   }
