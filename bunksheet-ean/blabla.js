@@ -89,7 +89,4 @@ screen: createBottomTabNavigator({
         console.log("EAN User Attributes: "+user.attributes);
       })
       .catch(error => console.log("Academic Details Error > Unable to Fetch User Attributes " + error ));
-    
-
 */
-
