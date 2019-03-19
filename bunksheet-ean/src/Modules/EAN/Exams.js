@@ -143,6 +143,13 @@ static async _handleRefresh() {
 
 
 renderNotices() {
+
+  if (this.state.data.length === 0) {
+    return(
+      <Card title='No Data Available' titleStyle={{color: '#666'}} containerStyle={{borderRadius: 15}} />
+    );
+  }
+
   return this.state.data.map(notice => 
       <NoticeDetail key={notice._id.toString()} notice={notice} /> 
   );
