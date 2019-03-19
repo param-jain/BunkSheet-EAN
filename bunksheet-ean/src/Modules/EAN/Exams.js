@@ -181,16 +181,16 @@ filterOptions = () => {
             <Text style={{ borderColor:'#FF5722', borderWidth: 0, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', color:'#fff', borderRadius: 15}}>Year Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Branch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Branch Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>General</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>General</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Division Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Division Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Batch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Batch Wise</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -203,19 +203,19 @@ filterOptions = () => {
             <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
           </View>
           <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Year Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Year Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Branch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Branch Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-            <Text style={{ borderWidth: 0, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>General</Text>
+            <Text style={{ borderWidth: 0, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#fff', color:'#fff', borderRadius: 15}}>General</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Division Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Division Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Batch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Batch Wise</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -228,19 +228,19 @@ filterOptions = () => {
             <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
           </View>
           <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Year Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Year Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Branch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Branch Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>General</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>General</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
             <Text style={{ borderWidth: 0, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Division Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Batch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Batch Wise</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -254,19 +254,19 @@ filterOptions = () => {
             <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
           </View>
           <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Year Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Year Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
             <Text style={{ borderWidth: 0, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Branch Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>General</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>General</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Division Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Division Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Batch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}> Batch Wise</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -279,19 +279,19 @@ filterOptions = () => {
             <Icon raised name="filter" size={20} type="font-awesome" color="#FF9800"/>
           </View>
           <TouchableOpacity activeOpacity={0} style={{justifyContent: 'center', alignContent:'center', flex: 1, borderRadius: 15}} onPress={() => this.yearWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Year Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Year Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.branchWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Branch Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Branch Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.makeRemoteRequest()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>General</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>General</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.divisionWiseSort()}>
-            <Text style={{ borderWidth: 2, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#FA9800', color:'#e0e0e0', borderRadius: 15}}>Division Wise</Text>
+            <Text style={{ borderWidth: 1, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'transparent', borderColor:'#eaeaea', color:'#fff', borderRadius: 15}}>Division Wise</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{justifyContent: 'center', alignContent:'center', flex: 1}} onPress={() => this.batchWiseSort()}>
-            <Text style={{ borderWidth: 0, marginLeft: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Batch Wise</Text>
+            <Text style={{ borderWidth: 0, marginLeft: 10, marginRight: 10, margin: 2.5, padding: 7, backgroundColor:'#FF5722', borderColor:'#FF5722', color:'#fff', borderRadius: 15}}>Batch Wise</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -353,14 +353,14 @@ batchWiseSort = () => {
 
 renderHeader = () => {
     return(
-        <View style={{height: '11.5%'}}>
-          <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../Images/header_image.jpeg')}>
+        <View style={{marginBottom: 10}}>
+         {/* <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../Images/education_texture.jpg')}> */}
             <Header
-              backgroundColor='transparent'
+              backgroundColor='#fff'
               outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-              centerComponent={{ text: 'Exams' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+              centerComponent={{ text: 'Exams' , style: { color: '#FF9800',fontSize: 18, fontWeight: 'bold' }  }}
             />
-          </ImageBackground>
+         {/* </ImageBackground> */}
         </View>
     );
   }
@@ -378,8 +378,8 @@ renderHeader = () => {
     }
 
     return (
-      <View style={styles.container}>
-       <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
+      <View style={styles.outerContainer}>
+       <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
        <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
           { this.renderHeader() }
           { this.filterOptions() }
@@ -392,6 +392,9 @@ renderHeader = () => {
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1
+  },
   container: {
     flexDirection: 'column',
     flex: 1,
