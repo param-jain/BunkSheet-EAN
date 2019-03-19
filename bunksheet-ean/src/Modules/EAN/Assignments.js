@@ -350,19 +350,19 @@ class Assignments extends React.Component {
   }
 
 
-    renderHeader = () => {
-        return(
-          <View style={{height: '11.5%'}}>
-          <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../Images/header_image.jpeg')}>
+  renderHeader = () => {
+    return(
+        <View style={{marginBottom: 10}}>
+         {/* <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../Images/education_texture.jpg')}> */}
             <Header
-              backgroundColor='transparent'
+              backgroundColor='#fff'
               outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-              centerComponent={{ text: 'Assignments' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+              centerComponent={{ text: 'Assignments' , style: { color: '#FF9800',fontSize: 18, fontWeight: 'bold' }  }}
             />
-          </ImageBackground>
+         {/* </ImageBackground> */}
         </View>
-        );
-      }
+    );
+  }
     
   render() {
 
@@ -378,9 +378,9 @@ class Assignments extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
-      <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
-      <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
+      <View style={styles.outerContainer}>
+       <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
+       <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
           { this.renderHeader() }
           { this.filterOptions() }
           { this.renderCollapsibleList() }
@@ -392,6 +392,9 @@ class Assignments extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1
+  },
   container: {
     flexDirection: 'column',
     flex: 1,

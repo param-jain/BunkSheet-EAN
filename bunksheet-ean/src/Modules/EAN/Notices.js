@@ -394,9 +394,9 @@ batchWiseSort = () => {
     }
 
     return (   
-      <View style={styles.container}>
-      <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-        <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
+      <View style={styles.outerContainer}>
+       <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
+       <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
               {this.filterOptions()}
               {this.renderCollapsibleList()}
               {this.floatingButton()}
@@ -407,6 +407,9 @@ batchWiseSort = () => {
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1
+  },
   container: {
     flexDirection: 'column',
     flex: 1,
