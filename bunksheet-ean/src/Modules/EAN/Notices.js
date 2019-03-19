@@ -393,16 +393,16 @@ batchWiseSort = () => {
       );
     }
 
-    return (   
-      <View style={styles.outerContainer}>
-       <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
-       <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
-              {this.filterOptions()}
-              {this.renderCollapsibleList()}
-              {this.floatingButton()}
-        </ImageBackground>
-      </View>
-    );
+      return (   
+        <View style={styles.outerContainer}>
+         <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
+         <ImageBackground imageStyle={{opacity: 0.8}} style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
+                {this.filterOptions()}
+                {this.renderCollapsibleList()}
+                {this.floatingButton()}
+          </ImageBackground>
+        </View>
+      );
   }
 }
 

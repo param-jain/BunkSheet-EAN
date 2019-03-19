@@ -380,7 +380,7 @@ class Assignments extends React.Component {
     return (
       <View style={styles.outerContainer}>
        <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
-       <ImageBackground style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
+       <ImageBackground imageStyle={{opacity: 0.8}} style={styles.container} source={require('../../Images/orange_gradient_background.png')}>
           { this.renderHeader() }
           { this.filterOptions() }
           { this.renderCollapsibleList() }
