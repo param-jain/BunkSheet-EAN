@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Bunksheet",
+    "name": "Bunksheet EAN",
     "description": "College Life Made Easy!",
-    "slug": "bunksheet",
+    "slug": "bunksheet-ean",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
