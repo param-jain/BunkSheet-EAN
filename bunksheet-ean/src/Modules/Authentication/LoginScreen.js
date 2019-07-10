@@ -38,6 +38,7 @@ class LoginScreen extends Component {
             errorMessage: '',
             isAuthenticating: false,
             notification: {},
+            data: {}
         }
     }
 
@@ -67,8 +68,27 @@ class LoginScreen extends Component {
                     this.props.navigation.navigate('ean_home', user); 
                 })
             .catch(err => { 
-                this.setState({ isAuthenticating: false });
-                this.setState({ errorMessage: err.message }); 
+                if (err.code === 'UserNotConfirmedException') {
+                    this.setState({
+                        data: {
+                            user: {
+                                username:email
+                            }
+                        }
+                    })
+                    this.setState({ isAuthenticating: false });
+                    Auth.resendSignUp(email).then(() => {
+                        console.log('code resent successfully');
+                        this.setState({ errorMessage: 'OTP Resent successfully' });
+                        this.props.navigation.navigate('otp_confirmation', this.state.data);
+                    }).catch(e => {
+                      console.log(e);
+                      this.setState({ errorMessage: e.message });
+                    });
+                } else {
+                    this.setState({ isAuthenticating: false });
+                    this.setState({ errorMessage: err.message }); 
+                }
             });
     }
 

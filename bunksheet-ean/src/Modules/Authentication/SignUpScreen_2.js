@@ -115,7 +115,8 @@ class SignUpScreen_2 extends Component {
                       'custom:college_reg_id': regID.toUpperCase()
                     }
                   })
-                    .then(data => { 
+                    .then(data => {
+                      console.log("otp required data: " + JSON.stringify(data)); 
                       this.setState({ isAuthenticating: false });
                       this.props.navigation.navigate('otp_confirmation', data);
                     })

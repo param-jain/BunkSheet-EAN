@@ -49,7 +49,6 @@ componentDidMount() {
 }
 
     backButtonNavigation() {
-
         this.setState({ errorMessage: '' });
         this.props.navigation.navigate('sign_up_2');
     }
@@ -68,6 +67,17 @@ componentDidMount() {
             this.setState({ isAuthenticating: false });
               this.setState({ errorMessage: err.message }); 
             });
+    }
+
+    resendOTP() {
+        console.log("OTP BADBA: " + JSON.stringify(this.state.username) + " " + JSON.stringify(this.props.navigation.state.params));
+        Auth.resendSignUp(this.state.username).then(() => {
+            console.log('code resent successfully');
+            this.setState({ errorMessage: 'OTP Resent successfully' });
+        }).catch(e => {
+          console.log(e);
+          this.setState({ errorMessage: e.message });
+        });
     }
 
     onOTPChange(text) {
@@ -185,6 +195,12 @@ componentDidMount() {
                         <Text style={styles.promptMessage}>Confirmation Code has been sent to your Registered Email ID. Kindly check your Inbox ... </Text>
                           {this.validateOTP(OTP)}
                           <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+                          <TouchableOpacity 
+                            style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 10 }} 
+                            onPress={() => this.resendOTP()}
+                            >
+                            <Text style={{color: '#424242'}} >Resend OTP</Text>
+                          </TouchableOpacity>
                           {this.enableCheckButton(OTP)}
                         </View>
                     </View>
