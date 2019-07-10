@@ -361,4 +361,4 @@ const styles = {
       }
   }
 
-  export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginScreen);
