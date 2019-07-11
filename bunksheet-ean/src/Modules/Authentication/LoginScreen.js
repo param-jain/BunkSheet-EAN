@@ -23,7 +23,7 @@ class LoginScreen extends Component {
             .then(data => { 
                 console.log("Login Data => "+ data);
                 this.setState({ isAuthenticating: false });
-                this.props.navigation.navigate('ean_home');
+                this.props.navigation.navigate('notices');
             })
             .catch(error => {
                 this.setState({ isAuthenticating: false });
@@ -65,7 +65,7 @@ class LoginScreen extends Component {
         Auth.signIn(this.props.email, this.props.password)
             .then(user => {
                     this.setState({ isAuthenticating: false });
-                    this.props.navigation.navigate('ean_home', user); 
+                    this.props.navigation.navigate('notices', user); 
                 })
             .catch(err => { 
                 if (err.code === 'UserNotConfirmedException') {
