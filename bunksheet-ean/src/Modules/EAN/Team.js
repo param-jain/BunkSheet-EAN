@@ -18,12 +18,53 @@ export default class Team extends Component {
                 phone: '+91 8668462386',
                 imgUri: require('../../Images/Team/image1.jpg')
             },
-        
             { 
                 key:'1',
                 name: 'Amey Deshpande',
                 email: 'ameyd30@gmail.com',
-                phone: '+91 8668462386',
+                phone: '+91 7588758032',
+                imgUri: require('../../Images/Team/image1.jpg')
+            },
+            { 
+                key:'2',
+                name: 'Yakshit Jain',
+                email: 'jainyakshittwo@gmail.com',
+                phone: '+91 8087550042',
+                imgUri: require('../../Images/Team/image1.jpg')
+            },
+            { 
+                key:'3',
+                name: 'Nitin Dhevar',
+                email: 'nitin.dhanabalan@gmail.com',
+                phone: '+91 8983569006',
+                imgUri: require('../../Images/Team/image1.jpg')
+            },
+            { 
+                key:'4',
+                name: 'Ayush Gupta',
+                email: 'ayuwork4@gmail.com',
+                phone: '+91 9028600226',
+                imgUri: require('../../Images/Team/image1.jpg')
+            },
+            { 
+                key:'5',
+                name: 'Tanmay Nale',
+                email: 'tvnale@gmail.com',
+                phone: '+91 9969108722',
+                imgUri: require('../../Images/Team/image1.jpg')
+            },
+            { 
+                key:'6',
+                name: 'Ajay Kadam',
+                email: 'ajaydkadam@gmail.com',
+                phone: '+91 8669286645',
+                imgUri: require('../../Images/Team/image1.jpg')
+            },
+            { 
+                key:'7',
+                name: 'Saumitra Kulkarni',
+                email: 'kulkarnisaumitra98@gmail.com',
+                phone: '+91 7774979035',
                 imgUri: require('../../Images/Team/image1.jpg')
             },
         ],

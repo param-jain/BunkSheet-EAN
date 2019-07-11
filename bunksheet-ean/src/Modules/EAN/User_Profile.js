@@ -605,6 +605,25 @@ class User_Profile extends React.Component {
               
                 <ListItem
                     hideChevron
+                    title="About Us"
+                    rightTitleStyle={{ fontSize: 15 }}
+                    onPress={() => this.props.navigation.navigate('team')}
+                    containerStyle={styles.listItemContainer}
+                    leftIcon={
+                        <BaseIcon
+                            containerStyle={{
+                            backgroundColor: '#4CAF50',
+                            }}
+                            icon={{
+                            type: 'entypo',
+                            name: 'users',
+                            }}
+                        />
+                    }
+                />     
+
+                <ListItem
+                    hideChevron
                     title="Sign Out"
                     rightTitleStyle={{ fontSize: 15 }}
                     onPress={() => this.signOut()}
