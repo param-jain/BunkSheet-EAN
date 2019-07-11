@@ -102,6 +102,11 @@ class LoginScreen extends Component {
         this.props.navigation.navigate('forgot_password');
     }
 
+    aboutUs() {
+        this.setState({ errorMessage: '' });
+        this.props.navigation.navigate('team');
+    }
+
     loginButtonDisabled = (email, password) => {
         if (
                 (password.length<8)||
@@ -283,6 +288,12 @@ class LoginScreen extends Component {
                             onPress={() => this.onForgotPwdPress()}
                             >
                             <Text style={{color: '#424242'}} >Forgotten Password?</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 5 }} 
+                            onPress={() => this.aboutUs()}
+                            >
+                            <Text style={{color: '#424242'}} >About Us</Text>
                         </TouchableOpacity>
                         <View style={styles.rectangle} />
                         <Button

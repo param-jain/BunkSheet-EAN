@@ -19,6 +19,7 @@ import User_Profile from './src/Modules/EAN/User_Profile';
 import Assignments from './src/Modules/EAN/Assignments';
 import Exams from './src/Modules/EAN/Exams';
 import AcademicDetailsPage from './src/Modules/Authentication/AcademicDetailsPage';
+import Team from './src/Modules/EAN/Team';
 
 export default class App extends React.Component {
 
@@ -27,6 +28,7 @@ export default class App extends React.Component {
 
       //academic_details: { screen: AcademicDetailsPage },
       login: { screen: LoginScreen },
+      team: { screen: Team, navigationOptions: { tabBarVisible: false }},
       forgot_password: { screen: ForgotPasswordScreen },
       academic_details: { screen: AcademicDetailsPage },
       sign_up: { 
@@ -49,7 +51,7 @@ export default class App extends React.Component {
               ean_home: {
                 screen: createStackNavigator({
                   notices: { screen: Notices },     
-                  profile: { screen: User_Profile, navigationOptions: { tabBarVisible: false } } 
+                  profile: { screen: User_Profile, navigationOptions: { tabBarVisible: false } }, 
                 }),
                 navigationOptions: {
                   title: "Notices",
@@ -59,7 +61,7 @@ export default class App extends React.Component {
                   },
                 }, 
               },
-              exams: { screen: Exams },
+              exams: { screen: Exams }
             }, {
               tabBarPosition: 'bottom',
               swipeEnabled: true,
