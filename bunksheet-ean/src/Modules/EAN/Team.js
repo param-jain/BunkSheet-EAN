@@ -83,14 +83,14 @@ export default class Team extends Component {
         <Image source={item.imgUri} style={styles.image}/>
         <View style={styles.details}>
             <Text style={[styles.name, {marginLeft: 10}]}> {item.name} </Text>
-            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 2}}>
-                <Icon name='envelope-o' type='font-awesome' size={18}/>
+            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 0}}>
+                <Icon name='envelope-o' type='font-awesome' size={16}/>
                 <TouchableOpacity onPress={() => Linking.openURL('mailto:'+item.email+'?subject=Hi There!')}>
                     <Text style={{marginLeft: 5, color:'blue'}}> {item.email} </Text>
                 </TouchableOpacity>
             </View>
-            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 2}}>
-                <Icon name='phone' type='font-awesome' size={18}/>
+            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 0}}>
+                <Icon name='phone' type='font-awesome' size={16}/>
                 <TouchableOpacity onPress={() => {Linking.openURL(`tel:${item.phone}`)}}>
                     <Text style={{marginLeft: 5, color:'#03A9F4'}}> +91 {item.phone} </Text>
                 </TouchableOpacity>
