@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1,
-    marginTop: 4,
+    marginTop: 30,
     backgroundColor: 'transparent',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
