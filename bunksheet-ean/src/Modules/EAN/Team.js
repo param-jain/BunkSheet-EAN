@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text, View, FlatList, StyleSheet, Dimensions,Image, StatusBar} from 'react-native'
+import {Text, Linking, View, FlatList, StyleSheet, TouchableOpacity, Dimensions,Image, StatusBar} from 'react-native'
 import { Icon } from 'react-native-elements';
 
 const width = Dimensions.get('window').width
@@ -15,63 +15,63 @@ export default class Team extends Component {
                 key:'0',
                 name: 'Param Jain',
                 email: 'param_jain@icloud.com',
-                phone: '+91 8668462386',
+                phone: '8668462386',
                 imgUri: require('../../Images/Team/image0-min.jpeg')
             },
             { 
                 key:'1',
                 name: 'Amey Deshpande',
                 email: 'ameyd30@gmail.com',
-                phone: '+91 7588758032',
+                phone: '7588758032',
                 imgUri: require('../../Images/Team/image1-min.jpg')
             },
             { 
                 key:'2',
                 name: 'Yakshit Jain',
                 email: 'jainyakshittwo@gmail.com',
-                phone: '+91 8087550042',
+                phone: '8087550042',
                 imgUri: require('../../Images/Team/image2-min.jpg')
             },
             { 
                 key:'3',
                 name: 'Nitin Dhevar',
                 email: 'nitin.dhanabalan@gmail.com',
-                phone: '+91 8983569006',
+                phone: '8983569006',
                 imgUri: require('../../Images/Team/image3-min.jpeg')
             },
             { 
                 key:'4',
                 name: 'Ayush Gupta',
                 email: 'ayuwork4@gmail.com',
-                phone: '+91 9028600226',
+                phone: '9028600226',
                 imgUri: require('../../Images/Team/image4-min.jpeg')
             },
             { 
                 key:'5',
                 name: 'Parth Shah',
                 email: 'parthsshah.97@gmail.com',
-                phone: '+91 8149245395',
+                phone: '8149245395',
                 imgUri: require('../../Images/Team/image5-min.jpg')
             },
             { 
                 key:'6',
                 name: 'Tanmay Nale',
                 email: 'tvnale@gmail.com',
-                phone: '+91 9969108722',
+                phone: '9969108722',
                 imgUri: require('../../Images/Team/image6-min.jpeg')
             },
             { 
                 key:'7',
                 name: 'Ajay Kadam',
                 email: 'ajaydkadam@gmail.com',
-                phone: '+91 8669286645',
+                phone: '8669286645',
                 imgUri: require('../../Images/Team/image7-min.jpeg')
             },
             { 
                 key:'8',
                 name: 'Saumitra Kulkarni',
                 email: 'kulkarnisaumitra98@gmail.com',
-                phone: '+91 7774979035',
+                phone: '7774979035',
                 imgUri: require('../../Images/Team/image8-min.jpeg')
             },
         ],
@@ -83,13 +83,17 @@ export default class Team extends Component {
         <Image source={item.imgUri} style={styles.image}/>
         <View style={styles.details}>
             <Text style={[styles.name, {marginLeft: 10}]}> {item.name} </Text>
-            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 5}}>
+            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 2}}>
                 <Icon name='envelope-o' type='font-awesome' size={18}/>
-                <Text style={{marginLeft: 5}}> {item.email} </Text>
+                <TouchableOpacity onPress={() => Linking.openURL('mailto:'+item.email+'?subject=Hi There!')}>
+                    <Text style={{marginLeft: 5, color:'blue'}}> {item.email} </Text>
+                </TouchableOpacity>
             </View>
-            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 5}}>
+            <View style={{flexDirection: 'row', marginLeft: 10, marginTop: 2}}>
                 <Icon name='phone' type='font-awesome' size={18}/>
-                <Text style={{marginLeft: 5}}> {item.phone} </Text>
+                <TouchableOpacity onPress={() => {Linking.openURL(`tel:${item.phone}`)}}>
+                    <Text style={{marginLeft: 5, color:'#03A9F4'}}> +91 {item.phone} </Text>
+                </TouchableOpacity>
             </View>
         </View>
         
