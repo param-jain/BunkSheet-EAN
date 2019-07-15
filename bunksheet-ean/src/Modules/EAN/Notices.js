@@ -20,14 +20,7 @@ class Notices extends React.Component {
     return {
         title: 'BunkSheet - Notices',
         headerTitleStyle: { color: '#FF9800' },
-        headerStyle: { backgroundColor: '#fff' },
-        headerRight: (
-            <View style={{marginLeft: 10, marginRight: 10, flexDirection:'row-reverse'}}>
-              <TouchableOpacity onPress={() => navigate('profile')} >
-                <Icon name='user' type='font-awesome' color = '#FF9600'/>
-              </TouchableOpacity>
-            </View>
-        ),
+        headerStyle: { backgroundColor: '#fff'},
         style: {
             marginTop: Platform.OS === 'android' ? 24 : 0
         }
