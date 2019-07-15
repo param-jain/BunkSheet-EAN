@@ -47,11 +47,10 @@ export default class App extends React.Component {
         screen: createBottomTabNavigator({
           ean: {
             screen: createMaterialTopTabNavigator({
-              assignments: { screen: Assignments },
               ean_home: {
                 screen: createStackNavigator({
                   notices: { screen: Notices },     
-                  profile: { screen: User_Profile, navigationOptions: { tabBarVisible: false } }, 
+                  //profile: { screen: User_Profile, navigationOptions: { tabBarVisible: false } }, 
                 }),
                 navigationOptions: {
                   title: "Notices",
@@ -61,17 +60,19 @@ export default class App extends React.Component {
                   },
                 }, 
               },
+              assignments: { screen: Assignments },
               exams: { screen: Exams }
             }, {
               tabBarPosition: 'bottom',
               swipeEnabled: true,
+              animationEnabled: false,
               tabBarOptions: { 
                 showIcon: true, 
                 showLabel: false, 
                 style: {
-                backgroundColor: '#F9A825',
-              }
-            },
+                  backgroundColor: '#F9A825',
+                },
+              },
             }),
             navigationOptions: {
               title: "E A N",
@@ -79,7 +80,14 @@ export default class App extends React.Component {
                 return <Icon name="paper-plane" type="font-awesome" size={22} color={tintColor} />;
               },
             }
-          }
+          },
+          profile: { screen: User_Profile, 
+            navigationOptions: { 
+              title: "Profile",
+              tabBarIcon: ({ tintColor }) => {
+                return <Icon name="user" type="font-awesome" size={22} color={tintColor} />;
+              },
+            } },
         }, {
           tabBarPosition: 'bottom',
           tabBarOptions: {

@@ -101,7 +101,7 @@ export default class Team extends Component {
             <View style={styles.container}>
             <StatusBar barStyle = "dark-content" backgroundColor='#fff' hidden = {false} translucent = {true}/>
             <View style={styles.header}>
-                <Icon name='arrow-left' type='font-awesome' size={22} containerStyle={{padding: 5}} onPress={() => this.props.navigation.navigate('notices')} />
+                <Icon name='arrow-left' type='font-awesome' size={22} containerStyle={{padding: 5}} onPress={() => this.props.navigation.navigate('ean_home')} />
                 <Image source={require('../../../assets/icon.png')} style={styles.logo} />
                 <Text style={styles.title}> TEAM BUNKSHEET</Text>
                 

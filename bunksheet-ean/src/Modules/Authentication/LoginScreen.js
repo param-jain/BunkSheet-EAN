@@ -23,7 +23,7 @@ class LoginScreen extends Component {
             .then(data => { 
                 console.log("Login Data => "+ data);
                 this.setState({ isAuthenticating: false });
-                this.props.navigation.navigate('notices');
+                this.props.navigation.navigate('ean_home');
             })
             .catch(error => {
                 this.setState({ isAuthenticating: false });
