@@ -11,7 +11,7 @@ Amplify.configure({ Auth: awsConfig });
 
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
-const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
+const ROOT_URL = 'http://bunksheet.ml/';
 
 class Notices extends React.Component {
   

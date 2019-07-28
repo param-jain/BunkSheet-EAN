@@ -32,7 +32,7 @@ import awsConfig from '../../Sensitive_Info/aws-exports';
 
 Amplify.configure({ Auth: awsConfig });
 
-const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
+const ROOT_URL = 'http://bunksheet.ml/';
 
 class SignUpScreen_2 extends Component {
 

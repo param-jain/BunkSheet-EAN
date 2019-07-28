@@ -14,7 +14,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from '../../Sensitive_Info/aws-exports';
 Amplify.configure({ Auth: awsConfig });
 
-const ROOT_URL = 'https://damp-fjord-36039.herokuapp.com/';
+const ROOT_URL = 'http://bunksheet.ml/';
 
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
