@@ -14,7 +14,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from '../../Sensitive_Info/aws-exports';
 Amplify.configure({ Auth: awsConfig });
 
-const ROOT_URL = 'http://bunksheet.ml/';
+const ROOT_URL = 'https://bunksheet.ml/';
 
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 

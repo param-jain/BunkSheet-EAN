@@ -14,7 +14,7 @@ Amplify.configure({ Auth: awsConfig });
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
 import axios from 'axios';
-const ROOT_URL = 'http://bunksheet.ml/';
+const ROOT_URL = 'https://bunksheet.ml/';
 
 class User_Profile extends React.Component {
 

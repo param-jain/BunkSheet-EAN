@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Linking, Text, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 
-const ROOT_URL = 'http://bunksheet.ml/';
+const ROOT_URL = 'https://bunksheet.ml/';
 
 export default NoticeDetail = ({ notice }) => {
     const { title, nbody, timestamp, tname, filelink } = notice;

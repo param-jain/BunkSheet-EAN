@@ -32,7 +32,7 @@ import awsConfig from '../../Sensitive_Info/aws-exports';
 
 Amplify.configure({ Auth: awsConfig });
 
-const ROOT_URL = 'http://bunksheet.ml/';
+const ROOT_URL = 'https://bunksheet.ml/';
 
 class SignUpScreen_2 extends Component {
 
@@ -76,7 +76,6 @@ class SignUpScreen_2 extends Component {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-              //regId: 'E2K16100000'
               regId: regID.toUpperCase()
           }),
           }).then((response) => {

@@ -11,7 +11,7 @@ Amplify.configure({ Auth: awsConfig });
 
 import { eanUserBranchSelect, eanUserYearSelect, eanUserDivisionSelect, eanUserBatchSelect } from '../../Actions/index';
 
-const ROOT_URL = 'http://bunksheet.ml/';
+const ROOT_URL = 'https://bunksheet.ml/';
 
 class Notices extends React.Component {
   
