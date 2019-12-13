@@ -58,8 +58,9 @@ class Notices extends React.Component {
         email: `${user.attributes["email"]}`,
         sub: `${user.attributes["sub"]}`
       });
-    console.log("EAN User Attributes: " + user.attributes["sub"]);
+    //console.log("EAN User Attributes: " + user.attributes["sub"]);
     this.getDataFromBackend();
+    this.makeRemoteRequest()
   })
   .catch(error => (console.log("User Profile Auth Error: "+ error)));
   }
@@ -67,7 +68,7 @@ class Notices extends React.Component {
   async getDataFromBackend() {
     const url = ROOT_URL+`nd/getDetails`;
     this.setState({ loading: true, yearSortFlag: false, branchSortFlag: false, generalSortFlag: true, divisionSortFlag: false, batchSortFlag: false});
-
+    console.log('hohoohh')
     fetch(url, {
         method: 'POST',
         headers: {
@@ -79,16 +80,22 @@ class Notices extends React.Component {
             sub: this.state.sub
         }),
         })
-        .then((response) => response.json())
+        .then((response) => {
+          console.log('lalsdladf',response);
+          response.json()
+        })
         .then((responseJson) => {
-          console.log(responseJson.year);
+            //console.log('asdads',responseJson);
             this.onYearSelect(responseJson.year);
             this.onBranchSelect(responseJson.branch);
             this.onDivisionSelect(responseJson.division);
             this.onBatchSelect(responseJson.batch);
             this.makeRemoteRequest();
         })
-        .catch(err => console.log("Notices Page: Backend Data Fetch => " + err));
+        .catch(err => {
+          this.setState({loading: false, refreshing: false})
+          console.log("Notices Page: Backend Data Fetch => " + err)
+        });
     }
 
   onBranchSelect = (text) => {
@@ -128,6 +135,7 @@ class Notices extends React.Component {
   }
 
   makeRemoteRequest = () => {
+    console.log('hohoasdadssdohh')
     const url = ROOT_URL+`bh/getnotices`;
     this.setState({ loading: true, yearSortFlag: false, branchSortFlag: false, generalSortFlag: true, divisionSortFlag: false, batchSortFlag: false});
 

@@ -131,8 +131,9 @@ class AcademicDetailsPage extends React.Component {
     }
 
     async proceedToEANHome() {
+      console.log('Button Click Ho Gaya Hai')
       let token = await Notifications.getExpoPushTokenAsync();
-      //console.log("ADP token => " + token );
+      console.log("ADP token => " + token );
       this.sendDetailsToBackend(token);
     }
 

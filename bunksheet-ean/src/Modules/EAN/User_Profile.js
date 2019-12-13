@@ -96,7 +96,7 @@ class User_Profile extends React.Component {
 
             })
             .catch(err => {
-                console.log("Notices Page: Backend Data Fetch => " + err);
+                console.log("User Profile Page: Backend Data Fetch => " + err);
                 this.setState({ loading: false });
         });
     }
@@ -107,7 +107,7 @@ class User_Profile extends React.Component {
         let token = await Notifications.getExpoPushTokenAsync();
         //console.log("ADP token => " + token );
 
-        fetch(url, {
+        await fetch(url, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -127,9 +127,13 @@ class User_Profile extends React.Component {
                 email: this.state.email
             }),
             })
-            .then((response) => response.json())
+            .then((response) => {
+                this.setState({loading: false})
+                console.log(response)
+                response.json()
+            })
             .then((responseJson) => {
-              console.log("UP Data Sent Successfully => "+responseJson.year);
+              console.log("UP Data Sent Successfully => "+responseJson );
               this.setState({ loading: false });
             })
             .catch(err => {
@@ -346,7 +350,8 @@ class User_Profile extends React.Component {
     const { avatar, fName, lName, email } = this.state;
     return (
         <View style={styles.container}>
-            <ScrollView style={styles.scroll}>
+            <ScrollView style={[styles.scroll]}>
+              <View style={{marginTop: 30}}/>
               <View style={styles.userRow}>
               <View style={styles.userImage}>
                   <Avatar

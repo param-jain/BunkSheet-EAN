@@ -85,7 +85,7 @@ async getDataFromBackend() {
           this.onBatchSelect(responseJson.batch);
           this.makeRemoteRequest();
       })
-      .catch(err => console.log("Notices Page: Backend Data Fetch => " + err));
+      .catch(err => console.log("Exams Page: Backend Data Fetch => " + err));
   }
 
 onBranchSelect = (text) => {
