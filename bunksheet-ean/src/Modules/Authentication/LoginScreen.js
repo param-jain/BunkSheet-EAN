@@ -261,7 +261,7 @@ class LoginScreen extends Component {
                                 source={require('../../../assets/icon.png')}
                             />
                         </View>
-                        <Text style={styles.logoText}>BunkSheet</Text>
+                        <Text style={styles.logoText}>PICT EAN</Text>
                         {this.validateEmail(this.props.email)}
                         {this.validatePassword(this.props.password)}
                         <Spinner visible={this.state.isAuthenticating} />
@@ -282,7 +282,7 @@ class LoginScreen extends Component {
                             style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 10 }} 
                             onPress={() => this.onForgotPwdPress()}
                             >
-                            <Text style={{color: '#424242'}} >Forgotten Password?</Text>
+                            <Text style={{color: '#424242'}} >Forgot Password?</Text>
                         </TouchableOpacity>
                         
                         <View style={styles.rectangle} />
@@ -321,6 +321,8 @@ const styles = {
     },
     logoImage: {
         marginTop: 10,
+        width: 150,
+        height: 150
     },
     loginFormView: {
         justifyContent: 'center',
