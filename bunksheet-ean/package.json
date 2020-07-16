@@ -14,7 +14,7 @@
     "axios": "^0.18.0",
     "expo": "^33.0.0",
     "express": "^4.16.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "lottie-react-native": "^2.3.2",
     "prop-types": "^15.6.2",
     "react": "16.8.3",
